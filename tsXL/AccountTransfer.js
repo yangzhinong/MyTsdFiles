@@ -3,39 +3,6 @@ $(document).ready(function () {
         var cardno = $(this).attr('cardno');
         doAccountTransfer(cardno);
     });
-    $('#btn-swap-card').live('click', function () {
-        var fToggleDisable = function ($e) {
-            if ($e.prop("disabled"))
-                $e.removeAttr('disabled');
-            else
-                $e.attr('disabled', 'disabled');
-        };
-        var card1 = $('#Card1').val();
-        var card2 = $('#Card2').val();
-        $('#Card2').val(card1);
-        $('#Card1').val(card2);
-        fToggleDisable($('#Card1'));
-        fToggleDisable($('#Card2'));
-        var $tft = $('select[name=TransferType]', $(".modal-dialog")); //是银币类型
-        if ($tft.val() == '2') {
-            fLoadTourShopNoList();
-        }
-    });
-    $('.modal-dialog #Card1').live('blur', function () {
-        console.log('card1 blur event');
-        if ($('.modal-dialog select[name=TransferType]').val() == '2') {
-            fLoadTourShopNoList();
-        }
-    });
-    $('select[name=TransferType]', $(".modal-dialog")).live('change', function () {
-        if ($(this).val() == '2') {
-            //银币
-            fLoadTourShopNoList();
-        }
-        else {
-            $('#fg-TourShopNo').hide();
-        }
-    });
     var fLoadTourShopNoList = function () {
         var $fg = $('#fg-TourShopNo');
         $fg.empty();
@@ -57,7 +24,39 @@ $(document).ready(function () {
             message: function () {
                 var $msg = $('<div></div>');
                 $msg.load("/GztCard/_AccountTransfer", { cardno: cardno }, function () {
-                    console.log($msg.html());
+                    //console.log('load:' + $msg.html());
+                    $msg.find('#btn-swap-card').click(function () {
+                        var fToggleDisable = function ($e) {
+                            if ($e.prop("disabled"))
+                                $e.removeAttr('disabled');
+                            else
+                                $e.attr('disabled', 'disabled');
+                        };
+                        var card1 = $('#Card1').val();
+                        var card2 = $('#Card2').val();
+                        $('#Card2').val(card1);
+                        $('#Card1').val(card2);
+                        fToggleDisable($('#Card1'));
+                        fToggleDisable($('#Card2'));
+                        var $tft = $('select[name=TransferType]', $(".modal-dialog")); //是银币类型
+                        if ($tft.val() == '2') {
+                            fLoadTourShopNoList();
+                        }
+                    });
+                    $msg.find("#Card1").blur(function () {
+                        if ($('select[name=TransferType]', $msg).val() == '2') {
+                            fLoadTourShopNoList();
+                        }
+                    });
+                    $('select[name=TransferType]', $msg).change(function () {
+                        if ($(this).val() == '2') {
+                            //银币
+                            fLoadTourShopNoList();
+                        }
+                        else {
+                            $('#fg-TourShopNo').hide();
+                        }
+                    });
                     dlg.open();
                 });
                 return $msg;

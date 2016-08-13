@@ -8,17 +8,6 @@
 
 
 
-
-    $('select[name=TransferType]', $(".modal-dialog")).live('change', function () {
-
-        if ($(this).val() == '2') {
-            //银币
-            fLoadTourShopNoList();
-        } else {
-            $('#fg-TourShopNo').hide();
-        }
-    });
-
     var fLoadTourShopNoList = function () {
         var $fg = $('#fg-TourShopNo');
         $fg.empty();

@@ -32,6 +32,8 @@ declare const enum LayerIcon {
     Spin = 16
 
 }
+
+
 interface Ilayer {
     //icon:9-ok  , 8-error
     alert(msg: string, icon?: number): void;
@@ -106,8 +108,8 @@ interface ILayerPromptOptions {
         btns: number,  //2
         btn:string[], //按钮标题
         type: number, //4 对话框图标类型 LayerIcon常量
-        yes?: () => void,  //按钮1的回调
-        no?: () => void   //按钮2的回调
+        yes?: (index?:number) => void,  //按钮1的回调
+        no?: (index?:number) => void   //按钮2的回调
     };
     border?: [number, number, string] | [number];  // [边框大小, 透明度, 颜色]
     closeBtn?: [number, boolean]; // [关闭按钮的风格（支持0和1）, true]
@@ -116,7 +118,8 @@ interface ILayerPromptOptions {
     iframe?: {
         src: string
     };
-    shadeClose?:boolean
+    shadeClose?: boolean;
+    success: (layero: JQuery) => void;  //层弹出成功后的回调函数. 
 
 }
 

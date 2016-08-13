@@ -99,97 +99,6 @@
     <TypeScriptCompile Include="typings\yzn\layer.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\.git\COMMIT_EDITMSG" />
-    <Content Include="Scripts\.git\config" />
-    <Content Include="Scripts\.git\description" />
-    <Content Include="Scripts\.git\HEAD" />
-    <Content Include="Scripts\.git\hooks\applypatch-msg.sample" />
-    <Content Include="Scripts\.git\hooks\commit-msg.sample" />
-    <Content Include="Scripts\.git\hooks\post-commit.sample" />
-    <Content Include="Scripts\.git\hooks\post-receive.sample" />
-    <Content Include="Scripts\.git\hooks\post-update.sample" />
-    <Content Include="Scripts\.git\hooks\pre-applypatch.sample" />
-    <Content Include="Scripts\.git\hooks\pre-commit.sample" />
-    <Content Include="Scripts\.git\hooks\pre-rebase.sample" />
-    <Content Include="Scripts\.git\hooks\prepare-commit-msg.sample" />
-    <Content Include="Scripts\.git\hooks\update.sample" />
-    <Content Include="Scripts\.git\index" />
-    <Content Include="Scripts\.git\info\exclude" />
-    <Content Include="Scripts\.git\logs\HEAD" />
-    <Content Include="Scripts\.git\logs\refs\heads\master" />
-    <Content Include="Scripts\.git\objects\02\e9e34861dbef71ef0794fbed0256c698acbdf3" />
-    <Content Include="Scripts\.git\objects\04\73057b043c0e5eafcac73552de8a958c075144" />
-    <Content Include="Scripts\.git\objects\05\93020bf4b961f94f09ca84d9b98196f800498d" />
-    <Content Include="Scripts\.git\objects\05\be5451a1fd7b8ed18be22b08ff2ea3d20076d3" />
-    <Content Include="Scripts\.git\objects\08\05afdf7cfdb7545105e197ee49256377cf1662" />
-    <Content Include="Scripts\.git\objects\08\5250cecff4d2b491aed754d9a8137986f9005b" />
-    <Content Include="Scripts\.git\objects\10\f81912ee702fece1c4d61b2ec8d4effc5e2800" />
-    <Content Include="Scripts\.git\objects\1c\90ba06f0ccc317f6b30cee08df859aeebc0c29" />
-    <Content Include="Scripts\.git\objects\1f\6ca6efd490d277254ab7059f020b2d1fe32ca4" />
-    <Content Include="Scripts\.git\objects\22\a54607eb56783205ac5a7af7f8ca06c0815817" />
-    <Content Include="Scripts\.git\objects\23\ec54724f820e360252383656563980af77aa56" />
-    <Content Include="Scripts\.git\objects\2a\3c1e8c23da9f281d106386ee4846bb79160e84" />
-    <Content Include="Scripts\.git\objects\2d\0d1f1136968e3d6bf726ad02707db376db1720" />
-    <Content Include="Scripts\.git\objects\2e\2e313c02b6e8a4bf849a9757b342d10d8a086b" />
-    <Content Include="Scripts\.git\objects\2f\179ea1fa15729f4da18cfbbe655df66da17506" />
-    <Content Include="Scripts\.git\objects\31\61e7a3eef64c6fe47b661b4523732a5bfbfcab" />
-    <Content Include="Scripts\.git\objects\32\c9010503d70368d17fd424e799e433b1a44655" />
-    <Content Include="Scripts\.git\objects\37\20c7c53dd889d4390c94130b152123e360528a" />
-    <Content Include="Scripts\.git\objects\38\a38b40075c8deb9778b1db99dbf0afe1827d72" />
-    <Content Include="Scripts\.git\objects\3a\4cc07c3adcac63bfa3540acfb11e885d50c7b5" />
-    <Content Include="Scripts\.git\objects\3b\6edfc718414baec29411fc10517dedb3ab9de1" />
-    <Content Include="Scripts\.git\objects\3e\7f4240a85ebdcc2bcf8a97e1428e154ae47561" />
-    <Content Include="Scripts\.git\objects\3f\e17e0133449e544cb33feb32566ab321079fe4" />
-    <Content Include="Scripts\.git\objects\44\ab4cedb3ba70031bff59d7d35e445d0339075f" />
-    <Content Include="Scripts\.git\objects\51\85b4c6cc1e712d15a2b777a98fae53955b3391" />
-    <Content Include="Scripts\.git\objects\5a\1201e6a1310dbc41d66677d675478c9c70c314" />
-    <Content Include="Scripts\.git\objects\5e\3dcdfb548774224563a275c827ff277f85d7e9" />
-    <Content Include="Scripts\.git\objects\62\0dc07194a152e883116062ac39a721ab556ed4" />
-    <Content Include="Scripts\.git\objects\62\9ac6accc53ffb54e43fabf66410830d424d5fb" />
-    <Content Include="Scripts\.git\objects\65\e2b7d1b123ad7fd0c78d826c436df0a69e4513" />
-    <Content Include="Scripts\.git\objects\74\6df9791e65a3821f7a2c10b4e04eb11b364d84" />
-    <Content Include="Scripts\.git\objects\78\cf13a05ee213fc71deee417acc846148d67fd1" />
-    <Content Include="Scripts\.git\objects\7c\3d42a3dd401f8795e9a03b9f5dd2d602f2d005" />
-    <Content Include="Scripts\.git\objects\7f\6b51c0b52626c3a9a570ce245a480677639327" />
-    <Content Include="Scripts\.git\objects\80\f4202ac0fa6a9084c28460c79d47e2dd862b97" />
-    <Content Include="Scripts\.git\objects\85\f044c05c91c733a092d77a6b500e4e2b79b9bb" />
-    <Content Include="Scripts\.git\objects\8a\556cc78d7fb112c5ee03828b73c97c0c1e5105" />
-    <Content Include="Scripts\.git\objects\8f\3ca2e2daf435edb66e57a0b8681aeda957c865" />
-    <Content Include="Scripts\.git\objects\98\07300ff44c898e19cf12a7d221c2bb792710b5" />
-    <Content Include="Scripts\.git\objects\9b\fa4c33c6a8923b2abaa7720099256a2ea44486" />
-    <Content Include="Scripts\.git\objects\9e\ec47bf7bc76aebf0bb5c4e9ec4e27f37aae346" />
-    <Content Include="Scripts\.git\objects\9f\45b0ed8605eda0194fc9690c4026852a8c2fa2" />
-    <Content Include="Scripts\.git\objects\a4\1a9d46a6fb3ce7ddc094ebebaa51cccecc0446" />
-    <Content Include="Scripts\.git\objects\a4\f114586ce4468aae29f8f241f145556377307f" />
-    <Content Include="Scripts\.git\objects\a7\b385e8a7a22b73db655872eafbf09607766346" />
-    <Content Include="Scripts\.git\objects\a8\c522b82535439fd13534e1eb791a3e860d9c27" />
-    <Content Include="Scripts\.git\objects\ae\844543323ca0ea4d6c67335293b7e24bf7a2aa" />
-    <Content Include="Scripts\.git\objects\b4\e2812462d9888e9accd74e0731723357ce9554" />
-    <Content Include="Scripts\.git\objects\bb\028f3425e65cf232b9f9c9e56f775c43d72a0a" />
-    <Content Include="Scripts\.git\objects\c1\8710440a5476c7bf626f0625814edfe8a51444" />
-    <Content Include="Scripts\.git\objects\c7\f7c6b7ee5fe2fbd39e995a040b1fedb0b13fdf" />
-    <Content Include="Scripts\.git\objects\ca\7c18227cce8446a701349335e73d86e5086e8f" />
-    <Content Include="Scripts\.git\objects\cb\fe1f390f429de1155aa9fd73bb426670912d46" />
-    <Content Include="Scripts\.git\objects\cc\0414e6553cba7aad91cb2b53c2ab4dc076501b" />
-    <Content Include="Scripts\.git\objects\cc\6f2bb9a5faa2066f4fcdbe2ad43baa673c74fa" />
-    <Content Include="Scripts\.git\objects\cc\73a38051108899ec62c1dfdf89032644fe7d21" />
-    <Content Include="Scripts\.git\objects\cf\8bdd26d025011490a3674b3f5bb0ec8be83804" />
-    <Content Include="Scripts\.git\objects\d1\bb9853194e4f7c2f6770fb442a466bada9b2ad" />
-    <Content Include="Scripts\.git\objects\da\82f00a27dbff2f188017bc102f35954ab9ea80" />
-    <Content Include="Scripts\.git\objects\e0\44071e4db71ae1c72182f7e6adba974dc8a1cb" />
-    <Content Include="Scripts\.git\objects\e0\6e7cda8c9df8840fc850cad25b2ea182475c50" />
-    <Content Include="Scripts\.git\objects\e4\087adcdead9c8bda502024eca2e03c691aeafe" />
-    <Content Include="Scripts\.git\objects\e8\f3c272074c7e0d34428a2dd75fa5cb0946a31a" />
-    <Content Include="Scripts\.git\objects\ec\e8742c3073aaa9901d1b946dd9fa9ddba19c76" />
-    <Content Include="Scripts\.git\objects\ef\df6aa1e27b248ea40c515828a3d4ebc5d5613f" />
-    <Content Include="Scripts\.git\objects\f1\fe4c24f33abd393451711dc9a51413cd1efea4" />
-    <Content Include="Scripts\.git\objects\f6\8d73d392c49932aa79ef888b5f31fbd3565919" />
-    <Content Include="Scripts\.git\objects\f7\092bb80c74e579160bf4e2e616b5cbe5a35d46" />
-    <Content Include="Scripts\.git\objects\fa\d6fe8a012be98685c1e743c1d0e3d556ebb20e" />
-    <Content Include="Scripts\.git\objects\fc\d62b7f3226edac5b4a420bbe446468521c364c" />
-    <Content Include="Scripts\.git\refs\heads\master" />
-    <Content Include="Scripts\.git\tortoisegit.data" />
-    <Content Include="Scripts\.git\tortoisegit.index" />
     <Content Include="Scripts\2.js.map" />
     <Content Include="Scripts\jqueryvalidation1.15\additional-methods.min.js.map" />
     <Content Include="Scripts\src\1.js.map" />
@@ -201,11 +110,7 @@
       <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\.git\objects\info\" />
-    <Folder Include="Scripts\.git\objects\pack\" />
-    <Folder Include="Scripts\.git\refs\tags\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
   </PropertyGroup>

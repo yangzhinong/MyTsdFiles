@@ -92,6 +92,7 @@
     <TypeScriptCompile Include="typings\react\react-global.d.ts" />
     <TypeScriptCompile Include="typings\react\react.d.ts" />
     <TypeScriptCompile Include="typings\tsd.d.ts" />
+    <TypeScriptCompile Include="typings\yzn\bootstrapSelect.d.ts" />
     <TypeScriptCompile Include="typings\yzn\bootstrapSuggest.ts" />
     <TypeScriptCompile Include="typings\yzn\bootstrapTable.d.ts" />
     <TypeScriptCompile Include="typings\yzn\html5valid.d.ts" />
@@ -141,7 +142,6 @@
     <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <TypeScriptTarget>ES5</TypeScriptTarget>
-    <TypeScriptOutDir>D:\work\公众国际业务操作系统\GongZhong\js\gz</TypeScriptOutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TypeScriptRemoveComments>true</TypeScriptRemoveComments>

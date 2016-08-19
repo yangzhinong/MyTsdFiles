@@ -10,6 +10,7 @@ interface JQuery {
     disabled: boolean;
     enabled: boolean;
     render(): string;
+    render(data: any): string;
     live(event: string, cb: any);
 }
 

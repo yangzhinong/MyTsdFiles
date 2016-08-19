@@ -28,12 +28,12 @@ interface ScrollSpyOptions {
 interface TooltipOptions {
     animation?: boolean;
     html?: boolean;
-    placement?: string | Function;
+    placement?: string | Function;  //top | bottom | left | right | auto
     selector?: string;
     title?: string | Function;
     trigger?: string;
     template?: string;
-    delay?: number | Object;
+    delay?: number | {show:number,hide:number};  //ms
     container?: string | boolean;
     viewport?: string | Function | Object;
 }
@@ -43,7 +43,7 @@ interface PopoverOptions {
     html?: boolean;
     placement?: string | Function;
     selector?: string;
-    trigger?: string;
+    trigger?: string;  //click | hover | focus | manual  You may pass multiple triggers; separate them with a space
     title?: string | Function;
     template?: string;
     content?: any;
@@ -101,7 +101,11 @@ interface JQuery {
     tooltip(command: string): JQuery;
 
     popover(options?: PopoverOptions): JQuery;
-    popover(command: string): JQuery;
+    popover(command: string): JQuery;  //show,hide,toggle,destory
+    popover(command: 'show'): JQuery;
+    popover(command: 'hide'): JQuery;
+    popover(command: 'toggle'): JQuery;
+    popover(command: 'destory'): JQuery;
 
     alert(): JQuery;
     alert(command: string): JQuery;

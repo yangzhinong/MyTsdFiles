@@ -71,7 +71,7 @@
     <TypeScriptCompile Include="1.ts" />
     <TypeScriptCompile Include="AccountTransfer.ts" />
     <TypeScriptCompile Include="app.ts" />
-    <TypeScriptCompile Include="2.ts" />
+    <TypeScriptCompile Include="orderopeartion.ts" />
     <TypeScriptCompile Include="Scripts\src\1.ts" />
     <TypeScriptCompile Include="typings\angularjs\angular.d.ts" />
     <TypeScriptCompile Include="typings\bootstrap-dialog\bootstrap-dialog.d.ts" />
@@ -142,6 +142,7 @@
     <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptOutDir>D:\work\公众国际业务操作系统\GongZhong\js\gz</TypeScriptOutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TypeScriptRemoveComments>true</TypeScriptRemoveComments>

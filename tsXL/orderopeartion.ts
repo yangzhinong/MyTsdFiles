@@ -269,32 +269,41 @@
                 var $frm = dlg.$modalBody.find('form');
                 if ($.html5Validate.isAllpass($frm)) {
                     layer.load("正在处理...");
+                    $('').serialize();
+                    var bUseCuMoney = 0;
+                    var $bUseCuMoney = $("input[name='bUseCuMoney']:checked", $frm);
+                    if ($bUseCuMoney.length > 0 && $bUseCuMoney.is(":visible"))
+                        bUseCuMoney= $bUseCuMoney.val();
+
                     var
                         OrderNo = $("input[name='OrderNo']", $frm).val(),
                         Money = $("input[name='Money']", $frm).val(),
                         GtzCardNumber = $("input[name='GtzCardNumber']", $frm).val(),
                         MobileCode = $("input[name='MobileCode']", $frm).val();
+                        
                     $.ajax({
                         type: "POST",
                         contentType: "application/json",
                         url: "/sysorders/submitorderpay/",
-                        data: "{'OrderNo':'" + OrderNo + "','Money':" + Money + ",'GtzCardNumber':'" + GtzCardNumber + "','MobileCode':'" + MobileCode + "'}",
+                        data: "{'OrderNo':'" + OrderNo + "','Money':" + Money + ",'GtzCardNumber':'" +
+                                            GtzCardNumber + "','MobileCode':'" + MobileCode +
+                                            "','bUseCuMoney':" + bUseCuMoney + "}",
                         dataType: 'json',
                         success: function (json) {
                             layer.closeAll();
                             if (json.state == 1) {
-                                layer.msg(json.msg, 1, 9);
+                                layer.msg(json.msg, 3, LayerIcon.SmillingFace);
                                 dlg.close();
                                 fRefreshButtons();
                             }
                             else if (json.state == 2) {
                                 //重复支付
-                                layer.alert(json.msg, 8);
+                                layer.alert(json.msg, LayerIcon.CryingFace);
                                 dlg.close();
                                 //alert(JSON.stringify(json));
                             }
                             else {
-                                layer.msg(json.msg, 1, 8);
+                                layer.msg(json.msg, 5, LayerIcon.CryingFace);
                             }
                         }
                     });
@@ -314,7 +323,8 @@
                 closeByBackdrop: false,
                 buttons: [
                     {
-                        label: '确定',
+                        label: '支付',
+                        cssClass:'btn btn-primary',
                         action: function () {
                             layer.load("正在处理...", 3);
                             fPay(); //状态2为同意
@@ -347,11 +357,11 @@
                     function (data) {
                         $def.resolve();
                         layer.closeAll();
-                        if (data.state == 1) {
-                            layer.msg(data.msg, 1, 9);
+                        if (data.code) {
+                            layer.msg(data.msg,3,LayerIcon.SmillingFace);
                             dlg.close();
                         } else {
-                            layer.msg(data.msg, 1, 8);
+                            layer.alert(data.msg,LayerIcon.CryingFace);
                         }
                     });
             };
@@ -425,7 +435,7 @@
 
         $("#getpaycode").live('click', function () {
             var
-                Money = $("#Money").val(),
+                orderId = fOrderId(),
                 GtzCardNumber = $("input[name='GtzCardNumber']").val();
             if ($.html5Validate.isAllpass($("input[name='GtzCardNumber']"))) {
                 var load = layer.load("提交中...", 10);
@@ -434,12 +444,22 @@
                     type: "POST",
                     contentType: "application/json",
                     url: "/sysorders/getpaycode2/",
-                    data: "{'Money':" + Money + ",'GtzCardNumber':'" + GtzCardNumber + "'}",
+                    data: "{'orderId':" + orderId + ",'GtzCardNumber':'" + GtzCardNumber + "'}",
                     dataType: 'json',
                     success: function (json) {
                         layer.close(load);
                         if (json.state) {
-                            layer.msg(json.msg, 1, 9);
+                            json.msg = $.parseJSON(json.msg);
+                            layer.msg(json.msg[0], 1, 9);
+                            var cuMoney = json.msg[1];
+                            
+                            $('#cuMoney').text(cuMoney);
+                            if (cuMoney > 0) {
+                                $("input[name='bUseCuMoney']", $('#cuMoney').closest('form')).val(cuMoney);
+                                $('#cuMoney').closest('.form-group').show();
+                            }
+                            else 
+                                $('#cuMoney').closest('.form-group').hide();
                             forgetTime(60);
                         } else {
                             layer.msg(json.msg, 1, 8);

@@ -53,8 +53,9 @@ interface Ilayer {
    
 
 
-    confirm(msg:string, yes: () => void, title: string, no?:()=>void): void;
-    confirm(msg:string, yes: () => void, no: () => void): void;
+    confirm(msg:string, yes: (b?:any) => void, title: string, no?:()=>void): void;
+    confirm(msg: string, yes: (b?:any) => void, no?: () => void): void;
+ 
 
     tab(ops: {
         area: string[],

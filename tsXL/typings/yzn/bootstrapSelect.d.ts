@@ -1,4 +1,4 @@
-﻿interface JQueryStatic {
+﻿interface JQuery {
 
     // data-属性 参见 : https://silviomoreto.github.io/bootstrap-select/options/
     selectpicker(cmd: string);

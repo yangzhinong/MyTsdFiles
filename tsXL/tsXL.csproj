@@ -19,6 +19,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.css" />
+    <Content Include="buildToDir.txt" />
     <Content Include="HtmlPage1.html" />
     <Content Include="index.html" />
     <Content Include="Scripts\2.js" />
@@ -71,7 +72,10 @@
     <TypeScriptCompile Include="1.ts" />
     <TypeScriptCompile Include="AccountTransfer.ts" />
     <TypeScriptCompile Include="app.ts" />
+    <TypeScriptCompile Include="LoadImg.ts" />
+    <TypeScriptCompile Include="log.ts" />
     <TypeScriptCompile Include="orderopeartion.ts" />
+    <TypeScriptCompile Include="productop.ts" />
     <TypeScriptCompile Include="Scripts\src\1.ts" />
     <TypeScriptCompile Include="typings\angularjs\angular.d.ts" />
     <TypeScriptCompile Include="typings\bootstrap-dialog\bootstrap-dialog.d.ts" />
@@ -92,12 +96,14 @@
     <TypeScriptCompile Include="typings\react\react-global.d.ts" />
     <TypeScriptCompile Include="typings\react\react.d.ts" />
     <TypeScriptCompile Include="typings\tsd.d.ts" />
+    <TypeScriptCompile Include="VirtualProduct.ts" />
     <TypeScriptCompile Include="typings\yzn\bootstrapSelect.d.ts" />
     <TypeScriptCompile Include="typings\yzn\bootstrapSuggest.ts" />
     <TypeScriptCompile Include="typings\yzn\bootstrapTable.d.ts" />
     <TypeScriptCompile Include="typings\yzn\html5valid.d.ts" />
     <TypeScriptCompile Include="typings\yzn\jsonMsg.d.ts" />
     <TypeScriptCompile Include="typings\yzn\layer.d.ts" />
+    <TypeScriptCompile Include="typings\yzn\windows.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\2.js.map" />
@@ -140,8 +146,9 @@
   </ProjectExtensions>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
-    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    
     <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptModuleKind>amd</TypeScriptModuleKind>
     <TypeScriptOutDir>D:\work\公众国际业务操作系统\GongZhong\js\gz</TypeScriptOutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">

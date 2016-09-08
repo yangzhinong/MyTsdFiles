@@ -2,7 +2,8 @@
 const enum ENUMOP {
     Pause = 3,
     Cancel = 2,
-    Resotre=0
+    Resotre = 0,
+    Edit=-99,
 }
 
 function OP(srcTypeId: number ,srcId: number, ToStau: ENUMOP) {
@@ -20,6 +21,9 @@ function OP(srcTypeId: number ,srcId: number, ToStau: ENUMOP) {
             break;
         case ENUMOP.Resotre:
             btnOK.label = '恢复产品';
+            break;
+        case ENUMOP.Edit:
+            btnOK.label = "编辑产品";
             break;
     }
 
@@ -42,6 +46,10 @@ function OP(srcTypeId: number ,srcId: number, ToStau: ENUMOP) {
                         layer.closeAll();
                         $btn.enable();
                         layer.alert('你必须至少选择一个出团日期的产品进行操作');
+                        return false;
+                    }
+                    if (ToStau == ENUMOP.Edit) {
+                        window.location.href=('/SysProduct/LineProductEdit/' + ids[0]);
                         return false;
                     }
 
@@ -78,12 +86,22 @@ function OP(srcTypeId: number ,srcId: number, ToStau: ENUMOP) {
                     $div.append($('#template-product-op').html());
 
                     var $table = $('#selectProduct', $div);
-                    $table.bootstrapTable({ data: data.msg });
+                    if (ToStau == ENUMOP.Edit) {
+                        $table.bootstrapTable({ data: data.msg, singleSelect: true});
+                    }
+                    else {
+
+                        $table.bootstrapTable({ data: data.msg});
+                    }
                    
                     dlg.open();
                 }
             );
             return $div;
+        },
+        onshown: function () {
+            var $table = $('#selectProduct', dlg.$modalBody);
+            $table.bootstrapTable('resetView');
         }
         
     });
@@ -95,13 +113,20 @@ function OP(srcTypeId: number ,srcId: number, ToStau: ENUMOP) {
 //#region 修改产品状态
 function checkSaleStatus(id, status,me) {
 
-    if (status == ENUMOP.Pause || status == ENUMOP.Cancel || status == ENUMOP.Resotre) {
+    if (status == ENUMOP.Pause ||
+        status == ENUMOP.Cancel ||
+        status == ENUMOP.Resotre ||
+        status == ENUMOP.Edit)
+    {
+        console.log("ok");
         var srcId = Number($(me).attr("data-src-id"));
         var srcTypeId = Number($(me).attr("data-srctype-id"));
         OP(srcTypeId,srcId, status);
         return;
 
     }
+
+    
 
     var array = "0:销售中|1:已出团|2:已取消|3:已暂停|4:已过期".split('|');
     var msg = "";

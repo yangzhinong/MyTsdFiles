@@ -6,6 +6,7 @@
 interface bootstrapTableColParam {
     radio?: boolean;
     checkbox?: boolean;
+    switchable?: boolean;
     field?: string;
     title?: string;
     titleTooltip?: string;
@@ -14,6 +15,11 @@ interface bootstrapTableColParam {
     colspan?: number;
     align?: 'left' | 'right' | 'center';
     halign?: string;  // 标头对齐
+    valign?: 'top' | 'middle' | 'bottom';
+    width?: number;
+    formatter?: (value: any, row: any, index) => {
+        disabled?: boolean, checked?: boolean, value?: any
+    }  | string ;
 }
 
 interface bootstrapTableOption {
@@ -69,7 +75,8 @@ interface bootstrapTableOption {
     rowStyle?: ((rowData: any, rowIndex: number) => string); //自定义行样式 参数为: row: 行数据; index: 行下标; 返回值可以为class或者css
     rowAttributes?: ((rowData: any, rowIndex: number) => any);
 
-
+    detailView?: boolean; 
+    onExpandRow: (index: number, row: any, $detail: JQuery) => void();
 } 
 
 

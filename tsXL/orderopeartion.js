@@ -56,7 +56,8 @@ $(document).ready(function () {
                 $.post("/SysOrders/CheckStatus", { orderid: fOrderId(), statu: 1 }, function (data) {
                     layer.closeAll();
                     fAlert(data);
-                    fRefreshButtons();
+                    window.location.reload();
+                    //fRefreshButtons();
                 });
             }, "预订确认");
         });
@@ -108,8 +109,9 @@ $(document).ready(function () {
                     layer.closeAll();
                     if (data.code) {
                         layer.alert(data.msg, 9);
-                        fRefreshButtons();
+                        //fRefreshButtons();
                         dlg.close();
+                        window.location.reload();
                     }
                     else {
                         layer.alert(data.msg, 8);
@@ -150,9 +152,9 @@ $(document).ready(function () {
                 $btn.enabled = true;
             }, 300);
         });
-        $('#order-op button:contains("退单申请")').click(function () {
+        $('#order-op button:contains("退款申请")').click(function () {
             var dlg = BootstrapDialog.confirm({
-                title: '请填写退单申请',
+                title: '请填写退款申请',
                 message: function (dlg) {
                     var $msg = $("<div></div>");
                     $msg.load("/SysOrders/_OrderRefundMoney/" + fOrderId());
@@ -188,7 +190,7 @@ $(document).ready(function () {
                 }
             });
         });
-        $('#order-op button:contains("退单审核")').click(function () {
+        $('#order-op button:contains("退款审核")').click(function () {
             var fCheck = function () {
                 var frm = dlg.$modalBody.find("form");
                 var id = frm.attr("data-id");
@@ -209,7 +211,7 @@ $(document).ready(function () {
             var $btn = $(this);
             $btn.disabled = true;
             var dlg = new BootstrapDialog({
-                title: '退单审核',
+                title: '退款审核',
                 message: function (dlg) {
                     var $msg = $('<div></div>');
                     $msg.load("/SysOrders/_OrderRefundMoneyApplyCheck/" + fOrderId());
@@ -322,6 +324,7 @@ $(document).ready(function () {
                     if (data.code) {
                         layer.msg(data.msg, 3, 9 /* SmillingFace */);
                         dlg.close();
+                        window.location.reload();
                     }
                     else {
                         layer.alert(data.msg, 8 /* CryingFace */);

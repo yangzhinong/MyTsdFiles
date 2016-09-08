@@ -1,10 +1,13 @@
-﻿const enum ViewType {
+﻿/// <reference path="loadimg.ts" />
+
+
+const enum ViewType {
     Index=0,
     Create = 1,
     Edit=2
 }
-
 declare var shops: string;  //全局变量
+
 
 class VP {
     public  IndexInit() {
@@ -15,8 +18,6 @@ class VP {
                 });
                 $("[data-toggle='popover']").popover();
              }
-
-
             InitImgPopover();
             $('#tablelist a.amount-shop').click(function () {
                 layer.load("正在加载...");
@@ -32,11 +33,9 @@ class VP {
                         action: function () {
                             dlg.close();
                         }
-
                     }],
                     message: function () {
                         var $div = $('<div></div>');
-
                         $.post('/SysVirtualProduct/GetTourShopDetails', { id: Number($tr.attr("data-id")) }, function (data) {
                             $div.html($('#dlg-amount-shop-template').render(data));
                             $('#amount', $div).text(amount);
@@ -45,28 +44,41 @@ class VP {
                         });
                         return $div;
                     }
-
                 });
                 dlg.realize();
+            });
+
+            $('#tablelist a.del').click(function () {
+                var $tr = $(this).closest('tr');
+                layer.alert("你是否确认删除充值套餐配置 - " + $tr.find('.name').text(),
+                    LayerIcon.Help,
+                    "删除确认",
+                    function () {
+                        $.post("/SysVirtualProduct/Del", { id: Number($tr.attr("data-id")) },
+                            function (data: IJsonMsg) {
+                                if (data.code) {
+                                    layer.msg(data.msg, 3, LayerIcon.SmillingFace);
+                                    $tr.remove();
+                                } else {
+                                    layer.alert(data.msg, LayerIcon.CryingFace);
+                                }
+
+                        });
+
+                    });
 
             });
         });
     }
-
     public EditInit() {
         this.DocCreateOrEditReady(ViewType.Edit);
     }
-
     public CreateInit() {
         this.DocCreateOrEditReady(ViewType.Create);
     }
-
-
     private DocCreateOrEditReady(vt:ViewType) {
-
         $(document).ready(function(){
             yznInitUploadImgs('virtualproduct', ['Logo']);
-
             var postUrl = "";
             switch (vt) {
                 case ViewType.Create:
@@ -83,11 +95,9 @@ class VP {
             }
             $('#btn-ok').click(function () {
                 var $frm = $(this).closest("form");
-
                 if ($.html5Validate.isAllpass($frm)) {
                     layer.load("正在处理...");
                     console.log($frm.serialize());
-
                     $.post(postUrl,
                         $frm.serialize(),
                         function (data: IJsonMsg) {
@@ -98,12 +108,7 @@ class VP {
                                 layer.alert(data.msg, LayerIcon.CryingFace);
                         });
                 }
-
-
             });
-            
         });
     }
-  
 }
-

@@ -72,11 +72,13 @@
     <TypeScriptCompile Include="1.ts" />
     <TypeScriptCompile Include="AccountTransfer.ts" />
     <TypeScriptCompile Include="app.ts" />
+    <TypeScriptCompile Include="config.ts" />
     <TypeScriptCompile Include="LoadImg.ts" />
     <TypeScriptCompile Include="log.ts" />
     <TypeScriptCompile Include="orderopeartion.ts" />
     <TypeScriptCompile Include="productop.ts" />
     <TypeScriptCompile Include="Scripts\src\1.ts" />
+    <TypeScriptCompile Include="SysSetting.ts" />
     <TypeScriptCompile Include="typings\angularjs\angular.d.ts" />
     <TypeScriptCompile Include="typings\bootstrap-dialog\bootstrap-dialog.d.ts" />
     <TypeScriptCompile Include="typings\bootstrap\bootstrap.d.ts" />
@@ -95,6 +97,7 @@
     <TypeScriptCompile Include="typings\react\react-dom.d.ts" />
     <TypeScriptCompile Include="typings\react\react-global.d.ts" />
     <TypeScriptCompile Include="typings\react\react.d.ts" />
+    <TypeScriptCompile Include="typings\requirejs\require.d.ts" />
     <TypeScriptCompile Include="typings\tsd.d.ts" />
     <TypeScriptCompile Include="VirtualProduct.ts" />
     <TypeScriptCompile Include="typings\yzn\bootstrapSelect.d.ts" />
@@ -146,9 +149,9 @@
   </ProjectExtensions>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
-    
     <TypeScriptTarget>ES5</TypeScriptTarget>
     <TypeScriptModuleKind>amd</TypeScriptModuleKind>
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
     <TypeScriptOutDir>D:\work\公众国际业务操作系统\GongZhong\js\gz</TypeScriptOutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">

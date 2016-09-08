@@ -1,5 +1,10 @@
-define(["require", "exports", "./log"], function (require, exports, log_1) {
-    "use strict";
-    log_1.message("hello");
+$(document).ready(function () {
+    yznInitUploadImgs('virtualproduct', ['Logo']);
+    $('#btn-ok').click(function () {
+        var $frm = $(this).closest("form");
+        if ($.html5Validate.isAllpass($frm)) {
+            $frm.submit();
+        }
+    });
 });
 //# sourceMappingURL=1.js.map

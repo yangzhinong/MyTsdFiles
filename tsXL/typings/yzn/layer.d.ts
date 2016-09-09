@@ -35,7 +35,7 @@ declare const enum LayerIcon {
 
 
 interface Ilayer {
-    //icon:9-ok  , 8-error
+    // icon:9-ok  , 8-error
     alert(msg: string, icon?: number): void;
     alert(msg: string, icon: number, ok: () => void);
     alert(msg: string, icon: number, title: string, ok?: () => void);
@@ -44,7 +44,7 @@ interface Ilayer {
     load(msg: string, waitsecond?: number): number;
     close(n: number): void;
     prompt(ops: ILayerPromptOptions, cb: (val: string) => void): void;
-    //msg 没有标题条
+    // msg 没有标题条
     msg(msg: string, icon?: number): void;
     msg(msg: string, waitsecond: number, icon: number): void;
     msg(msg: string, waitsecond: number, end: () => void): void;

@@ -31,9 +31,14 @@ interface JQuery {
             align?: 'center' | 'left' | 'right',
             css: {}
         }): void;
-    isVisible(): boolean;
-    hasProp(): boolean;
-    html5Validate(success: ()=>void, config: { novalidate?: boolean, submitEnabled?: boolean, validate?: () => boolean });
+    isVisible(): boolean;  //检测元素是否可见.
+    hasProp(): boolean;   //Boole型属性检查, 指required, multiple, novalidate等属性.
+    html5Validate(success: () => void,
+        config: {
+            novalidate?: boolean,  //是否取消现代浏览器的内置验证
+            submitEnabled?: boolean, //表单中禁用提交按钮
+            validate?: () => boolean //包含返回值,额外的验证
+        });
     //借一个地方写的其它插件.
     disabled: boolean;
     enabled: boolean;
@@ -43,7 +48,7 @@ interface JQuery {
 }
 
 interface IHtml5Vailate {
-    isAllpass(obj: JQuery): boolean;
+    isAllpass(obj: JQuery): boolean;  //与表单没有关系.
     
 }
 

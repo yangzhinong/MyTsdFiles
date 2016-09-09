@@ -76,7 +76,9 @@ interface bootstrapTableOption {
     rowAttributes?: ((rowData: any, rowIndex: number) => any);
 
     detailView?: boolean; 
+
     onExpandRow?: (index: number, row: any, $detail: JQuery) => void;
+
 } 
 
 

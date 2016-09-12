@@ -17,7 +17,29 @@ class VP {
                     $(this).attr("data-content", "<img style='max-width:800px;max-height:800px;' src='" + $(this).attr("value") + "' />");
                 });
                 $("[data-toggle='popover']").popover();
-             }
+            }
+            var $frmSearch = $('#search_form');
+
+            $('#sortfield',$frmSearch).change(function () {
+                $('#search_form').submit();
+            });
+
+            $('a.sorttype', $frmSearch).click(function () {
+                console.log('sort click');
+                var $sorticon = $('#sorticon');
+                if ($sorticon.val() == 'fa-sort-alpha-asc') {
+                    $(this).removeClass('fa-sort-alpha-asc').addClass('fa-sort-alpha-desc');
+                    $sorticon.val('fa-sort-alpha-desc');
+                    
+
+                } else {
+                    $(this).removeClass('fa-sort-alpha-desc').addClass('fa-sort-alpha-asc');
+                    $sorticon.val("fa-sort-alpha-asc");
+
+                }
+                $frmSearch.submit();
+            });
+            
             InitImgPopover();
             $('#tablelist a.amount-shop').click(function () {
                 layer.load("正在加载...");

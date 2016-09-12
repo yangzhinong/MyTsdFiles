@@ -411,6 +411,30 @@
                 $btn.enabled = true;
             }, 300);
         });
+        $('#order-op button:contains("手动结算")').click(function () {
+
+          var dlg=  BootstrapDialog.confirm({
+                message: '你要手动结算此订单?',
+                title: '请确认',
+                callback: function (ret) {
+                    if (ret) {
+                        $.post("/SysOrders/ManualSettle",
+                            { id: fOrderId() },
+                            function (data: IJsonMsg) {
+                                if (data.code) {
+                                    layer.msg(data.msg, 3, LayerIcon.SmillingFace);
+                                    location.reload();
+                                }
+                                else {
+                                    dlg.close();
+                                    layer.alert(data.msg);
+                                }
+                            });
+                    } 
+                }
+
+            });
+        });
     };
 
     fBindButtonsClick();

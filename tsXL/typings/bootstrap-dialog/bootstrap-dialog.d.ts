@@ -53,7 +53,7 @@ interface IBootstrapDialogOptions {
     buttonLabel?: string;
     buttons?: IBootstrapDialogButton[];
     /** Result will be true if button was click, while it will be false if users close the dialog directly. */
-    callback?: (result: boolean) => void;
+    callback?: (result: boolean) => void;   //  var $btn = <IBootstrapDialogButtonEx>this;
     onshow?(dialog?: IBootstrapDialogContext): void;
     onshown?(dialog?: IBootstrapDialogContext): void;
     /** Return FALSE to don`t close the dialog. Don`t return anything by default. */
@@ -90,7 +90,7 @@ interface IBootstrapDialogButton {
     icon?: string;
     cssClass?: string;
     autospin?: boolean;
-    action?: (dialog: IBootstrapDialogContext) => void;
+    action?: (dialog?: IBootstrapDialogContext,event?:JQueryEventObject) => void;
 }
 
 interface IBootstrapDialogContext {

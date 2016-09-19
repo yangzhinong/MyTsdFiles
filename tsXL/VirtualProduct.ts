@@ -109,12 +109,37 @@ class VP {
                 case ViewType.Edit:
                     postUrl = "/SysVirtualProduct/EditVP";
                     if (shops.length > 0) {
-                        setTimeout(function () {
-                            $('#TourShopIds').selectpicker('val', shops.split(','));
-                        }, 500);
+                            console.log(shops);
+                            $('#TourShopIds').selectpicker({}).selectpicker('val', shops.split(','));
                     }
                     break;
             }
+
+            $('select[name="IsExpiryDate"]').change(function () {
+                if ($(this).val() == 1) {
+                    $('#div-expiry-date').show();
+                } else {
+                    $('#div-expiry-date').hide();
+                }
+            });
+
+            $('#AmountLimitTime').change(function () {
+                var $me = $(this);
+                var i =  Number($me.val());
+
+                if (i > 0) {
+                    layer.confirm("购买" + i.toFixed(0) + "小时内, 人民币金额不能进行旅游消费和转帐,但可进行民生消费, 是否确定?",
+                        function () {
+                            $me.val(i.toFixed(0));
+                            layer.closeAll();
+
+                        }, '人民币限制旅游消费和转账确认', function () {
+                            $me.val(0);
+                        })
+                } else {
+                    $me.val(0);
+                }
+            });
             $('#btn-ok').click(function () {
                 var $frm = $(this).closest("form");
                 if ($.html5Validate.isAllpass($frm)) {

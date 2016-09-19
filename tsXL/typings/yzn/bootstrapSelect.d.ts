@@ -20,6 +20,21 @@
     selectpicker(cmd: 'hide');
     selectpicker(cmd: 'show');
     selectpicker(cmd: 'destroy');
+    selectpicker(opt:IBootStrapSelectPickerOption);
     
     
+}
+
+interface IBootStrapSelectPickerOption {
+    actionsBox?: boolean;
+    selectAllText?: string;
+    container?: string | boolean;
+    multipleSeparator?: string; 
+    noneSelectedText?: string;
+    selectedTextFormat?: 'values' | 'static' | 'count' | 'count > x';
+    size?: 'auto' | number | boolean;
+    style?: string ;
+    title?: string;
+    width?: 'auto' | 'fit' | string;
+
 }

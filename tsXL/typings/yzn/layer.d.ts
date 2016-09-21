@@ -120,7 +120,7 @@ interface ILayerPromptOptions {
         src: string
     };
     shadeClose?: boolean;
-    success: (layero: JQuery) => void;  //层弹出成功后的回调函数. 
+    success?: (layero: JQuery) => void;  //层弹出成功后的回调函数. 
 
 }
 

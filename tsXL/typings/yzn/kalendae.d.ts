@@ -99,4 +99,5 @@ interface KalendateInitOption {
     attachTo?: string|Element;  /* the element to attach the root container to. can be string or DOMElement */
     useYearNav?: boolean;
     dateClassMap?: any | KaledateCassMap;  // dateClassMap:{'2016-09-22':'yzndate'},
+    side?: 'bottom' | 'top';
 }

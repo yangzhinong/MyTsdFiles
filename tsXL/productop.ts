@@ -8,7 +8,7 @@ const enum ENUMOP {
 
 function OP(srcTypeId: number ,srcId: number, ToStau: ENUMOP) {
 
-    var btnOK = <IBootstrapDialogButton> {} ;
+    var btnOK = <IBootstrapDialogButtonSetting> {} ;
     switch (ToStau) {
         case ENUMOP.Pause:
             btnOK.label = '暂停产品';

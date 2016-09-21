@@ -85,6 +85,7 @@
     <TypeScriptCompile Include="typings\chosen\chosen.jquery.d.ts" />
     <TypeScriptCompile Include="typings\jquery.validation\jquery.validation.d.ts" />
     <TypeScriptCompile Include="typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="typings\moment\moment.d.ts" />
     <TypeScriptCompile Include="typings\react-bootstrap\react-bootstrap.d.ts" />
     <TypeScriptCompile Include="typings\react\react-addons-create-fragment.d.ts" />
     <TypeScriptCompile Include="typings\react\react-addons-css-transition-group.d.ts" />
@@ -99,6 +100,7 @@
     <TypeScriptCompile Include="typings\react\react.d.ts" />
     <TypeScriptCompile Include="typings\requirejs\require.d.ts" />
     <TypeScriptCompile Include="typings\tsd.d.ts" />
+    <TypeScriptCompile Include="typings\yzn\kalendae.d.ts" />
     <TypeScriptCompile Include="VirtualProduct.ts" />
     <TypeScriptCompile Include="typings\yzn\bootstrapSelect.d.ts" />
     <TypeScriptCompile Include="typings\yzn\bootstrapSuggest.ts" />

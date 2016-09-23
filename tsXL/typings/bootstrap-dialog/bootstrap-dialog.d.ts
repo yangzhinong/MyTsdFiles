@@ -17,10 +17,15 @@ interface IBootstrapDialog {
     TYPE_DANGER: string;
 
     //(options: IBootstrapDialogOptions): IBootstrapDialogContext;
-    alert(message: string, closeCallback ?: () => void): void;
-    confirm(message: string, closeCallback ?: (result: boolean) => void): void;
+    alert(message: string, closeCallback?: () => void): IBootstrapDialogInstance;
+    alert(options:IBootStrapSelectPickerOption):IBootstrapDialogInstance
+    confirm(message: string, closeCallback?: (result: boolean) => void): IBootstrapDialogInstance;
     confirm(options: IBootstrapDialogOptions): IBootstrapDialogInstance;
     show(options: IBootstrapDialogOptions): IBootstrapDialogInstance;
+    warning(message: string): IBootstrapDialogInstance;
+    danger(message: string): IBootstrapDialogInstance;
+    success(message: string): IBootstrapDialogInstance;
+    newGuid(): string;
 }
 
 
@@ -87,7 +92,7 @@ interface IBootstrapDialogInstance {
     open(): void;
     close(): void;
     realize(): void;
-    setTitle(title: string): void;
+    setTitle(title: string): IBootstrapDialogInstance;
     setMessage(message: string): void;
     setData(dataName: string, value: any): void;
     getData(dataName: string): any;
@@ -96,7 +101,7 @@ interface IBootstrapDialogInstance {
     /** See BootstrapDialog.TYPE_xxx constants. */
     setType(dialogType: string): void;
     /** Enable or disable all dialog`s buttons at once. */
-    enableButtons(enable: boolean): void;
+    enableButtons(enable?: boolean): void;
     getId(): any;
     getType(): any;
     getSize(): any;
@@ -141,7 +146,7 @@ interface IBootstrapDialogInstance {
     $modalBody: JQuery;
     $modalHeader: JQuery;
     $modalFooter: JQuery;
-    newGuid(): string;
+    
     isOpened(): boolean;
     
 
@@ -156,8 +161,10 @@ interface IBootstrapDialogInstance {
 interface IBootstrapDialogButtonEx extends JQuery {
     enable(): void;
     disable(): void;
-    toggleEnable(enable: boolean): IBootstrapDialogButtonEx;
+    toggleEnable(enable?: boolean): IBootstrapDialogButtonEx;
     dialog: IBootstrapDialogInstance;
     spin(): void;
     stopSpin(): void;
+    toggleSpin(spin?:boolean): IBootstrapDialogButtonEx;
+
 }

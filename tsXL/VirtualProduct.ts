@@ -114,6 +114,12 @@ class VP {
                     }
                     break;
             }
+            
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
 
             $('select[name="IsExpiryDate"]').change(function () {
                 if ($(this).val() == 1) {

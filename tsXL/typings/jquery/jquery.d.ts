@@ -19,6 +19,10 @@ and limitations under the License.
 ***************************************************************************** */
 
 
+interface JQueryFn {
+    extend: (o: Object) => void;
+}
+
 /**
  * Interface for the AJAX setting that will configure the AJAX request
  */
@@ -960,7 +964,7 @@ interface JQueryStatic {
     error(message: any): JQuery;
 
     expr: any;
-    fn: any;  //TODO: Decide how we want to type this
+    fn: JQueryFn;  //TODO: Decide how we want to type this
 
     isReady: boolean;
 

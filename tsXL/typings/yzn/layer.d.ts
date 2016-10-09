@@ -42,7 +42,7 @@ interface Ilayer {
 
     closeAll(): void;
     load(msg: string, waitsecond?: number): number;
-    close(n: number): void;
+    close(index: number): void;
     prompt(ops: ILayerPromptOptions, cb: (val: string) => void): void;
     // msg 没有标题条
     msg(msg: string, icon?: number): void;
@@ -53,8 +53,8 @@ interface Ilayer {
    
 
 
-    confirm(msg:string, yes: (b?:any) => void, title: string, no?:()=>void): void;
-    confirm(msg: string, yes: (b?:any) => void, no?: () => void): void;
+    confirm(msg:string, yes: (index?:number) => void, title: string, no?:()=>void): void;
+    confirm(msg: string, yes: (index?:number) => void, no?: () => void): void;
  
 
     tab(ops: {
@@ -98,24 +98,25 @@ interface Ilayer {
 interface ILayerPromptOptions {
     
     title?: string|boolean;
-    type?: number;  // LayerType常量
-    maxmin?: boolean;
+    type?: LayerType|number;  // LayerType常量
+    maxmin?: boolean; //是不有最大最小
     area?: string[]; //['auto','auto']
-    shift?: string;
-    page?: ILayerPageOptions | any;  //当type==LayerType.PageLayer 设置此参数
+    shift?: 'left-top' | 'top' | 'right-top' | 'left' |'bottom'; //动画方式.
+    fadeIn?: number;
+    page?: ILayerPageOptions ;  //当type==LayerType.PageLayer 设置此参数
     end?: () => void;  //层被彻底关闭后执行的事件.
     dialog?: {     //当type==LayerType.MessageBox  设置此参数
         msg: string,  //'您是如何看待前端开发？'
         btns: number,  //2
         btn:string[], //按钮标题
-        type: number, //4 对话框图标类型 LayerIcon常量
+        type: LayerIcon, //4 对话框图标类型 LayerIcon常量
         yes?: (index?:number) => void,  //按钮1的回调
         no?: (index?:number) => void   //按钮2的回调
     };
     border?: [number, number, string] | [number];  // [边框大小, 透明度, 颜色]
     closeBtn?: [number, boolean]; // [关闭按钮的风格（支持0和1）, true]
     time?: number; //0表示不自动关闭，若3秒后自动关闭，time: 3即可
-    zIndex?: number;
+    zIndex?: number;  //1000,不然其它部件有可能不正常
     iframe?: {
         src: string
     };
@@ -136,7 +137,7 @@ interface ILayerPageOptions {
 
 interface JQueryStatic {
 
-    layer(ops:ILayerPromptOptions): any;
+    layer(ops:ILayerPromptOptions): number;
 }
 
 

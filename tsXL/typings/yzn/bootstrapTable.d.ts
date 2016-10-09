@@ -5,10 +5,11 @@
 
 interface bootstrapTableColParam {
     radio?: boolean;
-    checkbox?: boolean;
+    checkbox?: boolean;  //使用复选项?
+    sortable?: boolean; //开启排序功能?
     switchable?: boolean;
     field?: string;
-    title?: string;
+    title?: string;  //标题
     titleTooltip?: string;
     class?: string;
     rowspan?: number;
@@ -65,7 +66,7 @@ interface bootstrapTableOption {
 
     paginationPreText?: string; // '<'
     paginationNextText?: string; // '>'
-    clickToSelect?: boolean; // false;
+    clickToSelect?: boolean; // false;   //单击行即可选中.
     singleSelect?: boolean; // 设置为true, 将禁止多选.
     toolbar?: string; // 一个jQuery 选择器，指明自定义的toolbar 例如:  #toolbar, .toolbar.
     checkboxHeader?: boolean; // 设置false 将在列头隐藏check-all checkbox .
@@ -78,8 +79,25 @@ interface bootstrapTableOption {
     detailView?: boolean; 
 
     onExpandRow?: (index: number, row: any, $detail: JQuery) => void;
+    ajax?: string | ((bootstrapTableAjaxParams)=>void);
+   
 
 } 
+
+interface bootstrapTableAjaxParams {
+    data: {
+        search: string,
+        sort: string, 
+        asc: string,  //asc desc
+        offset: number,  //20
+        limit: number
+    };
+    success(d: {
+        total: number,
+        rows: any[]
+    });
+
+}
 
 
 

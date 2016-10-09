@@ -22,9 +22,23 @@
     <Content Include="buildToDir.txt" />
     <Content Include="HtmlPage1.html" />
     <Content Include="index.html" />
+    <Content Include="require-2.1.8.js" />
     <Content Include="Scripts\2.js" />
     <Content Include="Scripts\bootstrap-dialog.js" />
     <Content Include="Scripts\h5Valid.js" />
+    <Content Include="Scripts\jasmine-2.5.2\boot.js" />
+    <Content Include="Scripts\jasmine-2.5.2\console.js" />
+    <Content Include="Scripts\jasmine-2.5.2\jasmine-html.js" />
+    <Content Include="Scripts\jasmine-2.5.2\jasmine.css" />
+    <Content Include="Scripts\jasmine-2.5.2\jasmine.js" />
+    <Content Include="Scripts\jasmine-2.5.2\jasmine_favicon.png" />
+    <Content Include="Scripts\qunit\qunit-2.0.1.css" />
+    <Content Include="Scripts\qunit\qunit-2.0.1.js" />
+    <Content Include="Scripts\require.js" />
+    <Content Include="xml\build.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="chutzpah.json" />
     <None Include="Scripts\jquery-1.4.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.4.js" />
     <Content Include="Scripts\jquery-1.4.4.min.js" />
@@ -67,23 +81,34 @@
     <Content Include="web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="xml\1.bat" />
+    <None Include="xml\nant.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="1.ts" />
-    <TypeScriptCompile Include="AccountTransfer.ts" />
+    <TypeScriptCompile Include="gz\1.ts" />
+    <TypeScriptCompile Include="gz\AccountTransfer.ts" />
     <TypeScriptCompile Include="app.ts" />
-    <TypeScriptCompile Include="config.ts" />
-    <TypeScriptCompile Include="LoadImg.ts" />
+    <TypeScriptCompile Include="gz\config.ts" />
+    <TypeScriptCompile Include="gz\faceToFace.ts" />
+    <TypeScriptCompile Include="gz\LoadImg.ts" />
+    <TypeScriptCompile Include="gz\Advisertx.ts" />
+    <TypeScriptCompile Include="gz\shoptx.ts" />
     <TypeScriptCompile Include="log.ts" />
-    <TypeScriptCompile Include="orderopeartion.ts" />
-    <TypeScriptCompile Include="productop.ts" />
+    <TypeScriptCompile Include="gz\orderopeartion.ts" />
+    <TypeScriptCompile Include="gz\productop.ts" />
     <TypeScriptCompile Include="Scripts\src\1.ts" />
-    <TypeScriptCompile Include="SysSetting.ts" />
+    <TypeScriptCompile Include="gz\SysSetting.ts" />
+    <TypeScriptCompile Include="test\spc\Test.jasmin.ts" />
+    <TypeScriptCompile Include="test\src\add.ts" />
+    <TypeScriptCompile Include="test\src\generator.ts" />
     <TypeScriptCompile Include="typings\angularjs\angular.d.ts" />
     <TypeScriptCompile Include="typings\bootstrap-dialog\bootstrap-dialog.d.ts" />
     <TypeScriptCompile Include="typings\bootstrap\bootstrap.d.ts" />
     <TypeScriptCompile Include="typings\chosen\chosen.jquery.d.ts" />
     <TypeScriptCompile Include="typings\icheck\icheck.d.ts" />
+    <TypeScriptCompile Include="typings\jasmine\jasmine.d.ts" />
     <TypeScriptCompile Include="typings\jquery.validation\jquery.validation.d.ts" />
     <TypeScriptCompile Include="typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="typings\moment\moment.d.ts" />
@@ -102,7 +127,8 @@
     <TypeScriptCompile Include="typings\requirejs\require.d.ts" />
     <TypeScriptCompile Include="typings\tsd.d.ts" />
     <TypeScriptCompile Include="typings\yzn\kalendae.d.ts" />
-    <TypeScriptCompile Include="VirtualProduct.ts" />
+    <TypeScriptCompile Include="typings\yzn\zTree.d.ts" />
+    <TypeScriptCompile Include="gz\VirtualProduct.ts" />
     <TypeScriptCompile Include="typings\yzn\bootstrapSelect.d.ts" />
     <TypeScriptCompile Include="typings\yzn\bootstrapSuggest.ts" />
     <TypeScriptCompile Include="typings\yzn\bootstrapTable.d.ts" />
@@ -155,7 +181,6 @@
     <TypeScriptTarget>ES5</TypeScriptTarget>
     <TypeScriptModuleKind>amd</TypeScriptModuleKind>
     <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
-    <TypeScriptOutDir>D:\work\公众国际业务操作系统\GongZhong\js\gz</TypeScriptOutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TypeScriptRemoveComments>true</TypeScriptRemoveComments>

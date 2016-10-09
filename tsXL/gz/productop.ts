@@ -87,7 +87,7 @@ function OP(srcTypeId: number ,srcId: number, ToStau: ENUMOP) {
 
                     var $table = $('#selectProduct', $div);
                     if (ToStau == ENUMOP.Edit) {
-                        $table.bootstrapTable({ data: data.msg, singleSelect: true});
+                        $table.bootstrapTable({ data:  data.msg, singleSelect: true});
                     }
                     else {
 

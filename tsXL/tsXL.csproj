@@ -20,6 +20,7 @@
   <ItemGroup>
     <Content Include="app.css" />
     <Content Include="buildToDir.txt" />
+    <Content Include="gz\lib\jquery.custom-file-input.css" />
     <Content Include="HtmlPage1.html" />
     <Content Include="index.html" />
     <Content Include="require-2.1.8.js" />
@@ -99,6 +100,7 @@
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="gz\config.ts" />
     <TypeScriptCompile Include="gz\faceToFace.ts" />
+    <TypeScriptCompile Include="gz\lib\fileUploadBeatutify.ts" />
     <TypeScriptCompile Include="gz\lib\sentvcodebutton.ts" />
     <TypeScriptCompile Include="gz\lib\uploadimgs.ts" />
     <TypeScriptCompile Include="gz\lib\vbstring.ts" />

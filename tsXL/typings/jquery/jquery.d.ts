@@ -16,7 +16,7 @@ MERCHANTABLITY OR NON-INFRINGEMENT.
 
 See the Apache Version 2.0 License for specific language governing permissions
 and limitations under the License.
-***************************************************************************** */
+* ***************************************************************************** */
 
 
 interface JQueryFn {
@@ -497,7 +497,8 @@ interface JQueryEventObject extends BaseJQueryEventObject, JQueryInputEventObjec
 }
 
 /*
-    Collection of properties of the current browser
+    Collection of properties of the current brows
+* 
 */
 
 interface JQuerySupport {

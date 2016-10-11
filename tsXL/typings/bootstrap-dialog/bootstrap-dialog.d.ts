@@ -159,7 +159,7 @@ interface IBootstrapDialogInstance {
 //扩展按钮事件处理的按钮对象 
 //使用方式 action: function(){ var btn=<IBootstrapDialogButtonEx>this;}
 interface IBootstrapDialogButtonEx extends JQuery {
-    enable(): void;
+    //enable(): void;
     disable(): void;
     toggleEnable(enable?: boolean): IBootstrapDialogButtonEx;
     dialog: IBootstrapDialogInstance;

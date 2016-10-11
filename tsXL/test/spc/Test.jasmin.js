@@ -16,4 +16,3 @@ define(["require", "exports", 'test/src/add'], function (require, exports, tool)
         });
     });
 });
-//# sourceMappingURL=Test.jasmin.js.map

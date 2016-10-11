@@ -139,4 +139,3 @@ var VP = (function () {
     };
     return VP;
 }());
-//# sourceMappingURL=VirtualProduct.js.map

@@ -1,55 +1,3 @@
-/*
- <div class="form-group">
-       <label class="col-lg-2 control-label">代表图：</label>
-       <div class="col-lg-10">
-           <div id="fileList">
-           </div>
-           <div class="input-group">
-               <input name="Logo" id="Logo" class="form-control" type="text" value="" readonly="readonly" required="required"
-                       data-placement="auto"
-                       data-toggle="popover"
-                       data-trigger="hover"
-                       data-html="true"
-                       style="text-decoration: underline;color:blue;" />
-               <span class="input-group-addon"><a id="filePickerLogo" style="font-size:10px;">上传</a></span>
-           </div>
-       </div>
-</div>
-*
-*/
-function yznInitUploadImgs(imgPath, initTextBoxIds) {
-    var applicationPath = window.applicationPath === "" ? "" : window.applicationPath || "../../";
-    var $ = jQuery;
-    var arrList = initTextBoxIds; // ['Logo'];//需要上传ID
-    $.each(arrList, function (n, v_id) {
-        var _this = $("#" + v_id);
-        if ($(_this).val() != '') {
-            $(_this).attr("data-content", "<img style='max-width:800px;max-height:800px;' src='/public/" + imgPath + "/" + $(_this).val() + "' />");
-        }
-        load_upload(_this, v_id);
-    });
-    function load_upload(thisc, fp) {
-        //webuploader 实例
-        var uploader = WebUploader.create({
-            auto: true,
-            disableGlobalDnd: true,
-            swf: applicationPath + '/js/webuploader/uploader.swf',
-            server: applicationPath + '/Home/UpLoadProcess?paths=' + imgPath,
-            pick: '#filePicker' + fp,
-            multiple: false,
-            accept: {
-                title: 'Images',
-                extensions: 'gif,jpg,jpeg,bmp,png',
-                mimeTypes: 'image/*'
-            }
-        });
-        uploader.on('uploadSuccess', function (file, response) {
-            $('#' + file.id).addClass('upload-state-done');
-            $(thisc).attr("value", response.filePath);
-            $(thisc).attr("data-content", "<img style='max-width:800px;max-height:800px;' src='/public/" + imgPath + "/" + response.filePath + "' />");
-        });
-    }
-}
 /// <reference path="loadimg.ts" />
 var VP = (function () {
     function VP() {
@@ -62,6 +10,23 @@ var VP = (function () {
                 });
                 $("[data-toggle='popover']").popover();
             }
+            var $frmSearch = $('#search_form');
+            $('#sortfield', $frmSearch).change(function () {
+                $('#search_form').submit();
+            });
+            $('a.sorttype', $frmSearch).click(function () {
+                console.log('sort click');
+                var $sorticon = $('#sorticon');
+                if ($sorticon.val() == 'fa-sort-alpha-asc') {
+                    $(this).removeClass('fa-sort-alpha-asc').addClass('fa-sort-alpha-desc');
+                    $sorticon.val('fa-sort-alpha-desc');
+                }
+                else {
+                    $(this).removeClass('fa-sort-alpha-desc').addClass('fa-sort-alpha-asc');
+                    $sorticon.val("fa-sort-alpha-asc");
+                }
+                $frmSearch.submit();
+            });
             InitImgPopover();
             $('#tablelist a.amount-shop').click(function () {
                 layer.load("正在加载...");
@@ -93,14 +58,14 @@ var VP = (function () {
             });
             $('#tablelist a.del').click(function () {
                 var $tr = $(this).closest('tr');
-                layer.alert("你是否确认删除充值套餐配置 - " + $tr.find('.name').text(), LayerIcon.Help, "删除确认", function () {
+                layer.alert("你是否确认删除充值套餐配置 - " + $tr.find('.name').text(), 4 /* Help */, "删除确认", function () {
                     $.post("/SysVirtualProduct/Del", { id: Number($tr.attr("data-id")) }, function (data) {
                         if (data.code) {
-                            layer.msg(data.msg, 3, LayerIcon.SmillingFace);
+                            layer.msg(data.msg, 3, 9 /* SmillingFace */);
                             $tr.remove();
                         }
                         else {
-                            layer.alert(data.msg, LayerIcon.CryingFace);
+                            layer.alert(data.msg, 8 /* CryingFace */);
                         }
                     });
                 });
@@ -124,12 +89,38 @@ var VP = (function () {
                 case 2 /* Edit */:
                     postUrl = "/SysVirtualProduct/EditVP";
                     if (shops.length > 0) {
-                        setTimeout(function () {
-                            $('#TourShopIds').selectpicker('val', shops.split(','));
-                        }, 500);
+                        console.log(shops);
+                        $('#TourShopIds').selectpicker({}).selectpicker('val', shops.split(','));
                     }
                     break;
             }
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+            $('select[name="IsExpiryDate"]').change(function () {
+                if ($(this).val() == 1) {
+                    $('#div-expiry-date').show();
+                }
+                else {
+                    $('#div-expiry-date').hide();
+                }
+            });
+            $('#AmountLimitTime').change(function () {
+                var $me = $(this);
+                var i = Number($me.val());
+                if (i > 0) {
+                    layer.confirm("购买" + i.toFixed(0) + "小时内, 人民币金额不能进行旅游消费和转帐,但可进行民生消费, 是否确定?", function () {
+                        $me.val(i.toFixed(0));
+                        layer.closeAll();
+                    }, '人民币限制旅游消费和转账确认', function () {
+                        $me.val(0);
+                    });
+                }
+                else {
+                    $me.val(0);
+                }
+            });
             $('#btn-ok').click(function () {
                 var $frm = $(this).closest("form");
                 if ($.html5Validate.isAllpass($frm)) {
@@ -140,7 +131,7 @@ var VP = (function () {
                         if (data.code)
                             window.location.href = "/SysVirtualProduct/Index";
                         else
-                            layer.alert(data.msg, LayerIcon.CryingFace);
+                            layer.alert(data.msg, 8 /* CryingFace */);
                     });
                 }
             });

@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿import  * as  tool from 'lib/sentvcodebutton';
+
+$(document).ready(function () {
     //产品分类下拉框
     (function () {
         var bShown =false;
@@ -74,36 +76,42 @@
         });
     })();
 
+    
 
-    //#region 发送验证码
-    $("#getpaycode").click(function () {
-        var
-            Money = $("input[name='Money']").val(),
-            GtzCardNumber = $("input[name='GtzCardNumber']").val(),
-            cuMoney = Number($("input[name='cuMoney']").val());
+    var oVBtn = new tool.BtnSendVaildCode($('#getpaycode'), 30,
+        function () {
+            var
+                Money = $("input[name='Money']").val(),
+                GtzCardNumber = $("input[name='GtzCardNumber']").val(),
+                cuMoney = Number($("input[name='cuMoney']").val());
 
-        if ($.html5Validate.isAllpass($("input[name='Money'],input[name='GtzCardNumber']"))) {
-            var load = layer.load("提交中...", 3);
-            forgetTime();
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
                 url: "/sysorders/GetPayCodeForFaceToFace/",
-                data: "{'Money':" + Money +",'cuMoney':" + cuMoney +",'GtzCardNumber':'" + GtzCardNumber + "'}",
+                data: "{'Money':" + Money + ",'cuMoney':" + cuMoney + ",'GtzCardNumber':'" + GtzCardNumber + "'}",
                 dataType: 'json',
                 success: function (json) {
-                    layer.close(load);
+                    //layer.close(load);
                     if (json.state) {
                         layer.msg(json.msg, 1, 9);
-                        
+
                     } else {
                         layer.msg(json.msg, 1, 8);
                     }
                 }
             });
+
+        },
+        function () {
+            
+            if ($.html5Validate.isAllpass($("input[name='Money'],input[name='cuMoney'],input[name='GtzCardNumber']")))
+                return true;
+            return false;
         }
-    });
-    //#endregion
+    );
+
+
 
     //#region 提交
     $("#btn_submit").click(function () {
@@ -138,14 +146,9 @@
                     layer.close(load);
                     if (json.state == 1) {
                         layer.msg(json.msg, 1, 9);
-                        window.location.href = "/sysorders/index";
+                        window.location.href = "/sysorders/facetofaceindex";
                     }
-                    else if (json.state == 2) {
-                        //有优惠券
-
-
-                        alert(JSON.stringify(json));
-                    }
+                    
                     else {
                         layer.msg(json.msg, 1, 8);
                     }
@@ -156,36 +159,8 @@
 
 
 
-            //#endregion
+    //#endregion
 
-    //#region 倒计时
-
-    var forgetTime= (function ($d:JQuery, seconds:number) {
-
-        var countdown = seconds;
-        var oldText = $d.text();
-        function forgetTime() {
-            var _this = $d;
-            console.log(countdown);
-            if (countdown <= 0) {
-                $(_this).attr("disabled", false);
-                $(_this).text(oldText);
-                countdown = seconds;
-            } else {
-                $(_this).attr("disabled", true);
-                $(_this).text("重新发送(" + countdown + ")");
-                countdown = countdown - 1;
-                if (countdown >= 0) {
-                    console.log('call forgetTime: ' + countdown.toString());
-                    setTimeout(function () {
-                        forgetTime()
-                    }, 1000);
-                }
-            }
-        }
-        return forgetTime;
-    })($("#getpaycode"),60);
-        //#endregion
 
 
     

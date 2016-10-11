@@ -10,4 +10,3 @@ var ThomasArdal;
     }());
     ThomasArdal.StringGenerator = StringGenerator;
 })(ThomasArdal || (ThomasArdal = {}));
-//# sourceMappingURL=generator.js.map

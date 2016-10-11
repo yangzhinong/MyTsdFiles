@@ -371,6 +371,26 @@ $(document).ready(function () {
                 $btn.enabled = true;
             }, 300);
         });
+        $('#order-op button:contains("手动结算")').click(function () {
+            var dlg = BootstrapDialog.confirm({
+                message: '你要手动结算此订单?',
+                title: '请确认',
+                callback: function (ret) {
+                    if (ret) {
+                        $.post("/SysOrders/ManualSettle", { id: fOrderId() }, function (data) {
+                            if (data.code) {
+                                layer.msg(data.msg, 3, 9 /* SmillingFace */);
+                                location.reload();
+                            }
+                            else {
+                                dlg.close();
+                                layer.alert(data.msg);
+                            }
+                        });
+                    }
+                }
+            });
+        });
     };
     fBindButtonsClick();
     (function () {
@@ -435,4 +455,3 @@ $(document).ready(function () {
         });
     })();
 });
-//# sourceMappingURL=orderopeartion.js.map

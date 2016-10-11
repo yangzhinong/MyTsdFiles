@@ -4,11 +4,15 @@
   <property name="gz" value="F:/MyTsdFiles/tsXL/gz"/>
   <target name="build">
     <echo message="hello world ${gz}" />
-    <copy flatten="false" todir="e:/built">
-      <fileset basedir="${gz}">
-        <include name="**/*"/>
+    
+    <copy flatten="false" todir="D:/work/公众国际业务操作系统/GongZhong/js/gz">
+      <fileset basedir="e:/gz">
+        <include name="*.js"/>
       </fileset>
     </copy>
+
+
+
   </target>
 </project>
 

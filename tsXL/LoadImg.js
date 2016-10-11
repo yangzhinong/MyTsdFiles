@@ -17,37 +17,5 @@
 </div>
 *
 */
-function yznInitUploadImgs(imgPath, initTextBoxIds) {
-    var applicationPath = window.applicationPath === "" ? "" : window.applicationPath || "../../";
-    var $ = jQuery;
-    var arrList = initTextBoxIds; // ['Logo'];//需要上传ID
-    $.each(arrList, function (n, v_id) {
-        var _this = $("#" + v_id);
-        if ($(_this).val() != '') {
-            $(_this).attr("data-content", "<img style='max-width:800px;max-height:800px;' src='/public/" + imgPath + "/" + $(_this).val() + "' />");
-        }
-        load_upload(_this, v_id);
-    });
-    function load_upload(thisc, fp) {
-        //webuploader 实例
-        var uploader = WebUploader.create({
-            auto: true,
-            disableGlobalDnd: true,
-            swf: applicationPath + '/js/webuploader/uploader.swf',
-            server: applicationPath + '/Home/UpLoadProcess?paths=' + imgPath,
-            pick: '#filePicker' + fp,
-            multiple: false,
-            accept: {
-                title: 'Images',
-                extensions: 'gif,jpg,jpeg,bmp,png',
-                mimeTypes: 'image/*'
-            }
-        });
-        uploader.on('uploadSuccess', function (file, response) {
-            $('#' + file.id).addClass('upload-state-done');
-            $(thisc).attr("value", response.filePath);
-            $(thisc).attr("data-content", "<img style='max-width:800px;max-height:800px;' src='/public/" + imgPath + "/" + response.filePath + "' />");
-        });
-    }
-}
+
 //# sourceMappingURL=LoadImg.js.map

@@ -455,4 +455,3 @@ $(document).ready(function () {
         });
     })();
 });
-//# sourceMappingURL=orderopeartion.js.map

@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('#btn-import-excel').click(function () {
         var dlg = new BootstrapDialog({
-            title: 'Excel导入卡号',
+            title: '导入石油卡 - Excel方式',
             message: function () {
                 var $div = $('<div/>');
                 $div.append($('#tpl-import-excel').html());
@@ -13,6 +13,9 @@ $(document).ready(function () {
                 {
                     label: '确定',
                     action: function () {
+                        var $btn = this;
+                        $btn.disable();
+                        layer.load("正在处理...");
                         var $frm = dlg.$modalBody.find('form');
                         $.ajax({
                             url: '/GTOilCard/importExcel',
@@ -22,7 +25,15 @@ $(document).ready(function () {
                             processData: false,
                             contentType: false
                         }).done(function (data) {
-                            alert(data.msg);
+                            layer.closeAll();
+                            $btn.enable();
+                            if (data.code) {
+                                layer.alert("导入成功!", 9 /* SmillingFace */);
+                                window.location.reload();
+                            }
+                            else {
+                                layer.alert(data.msg, 8 /* CryingFace */);
+                            }
                         });
                     }
                 },
@@ -35,11 +46,5 @@ $(document).ready(function () {
             ]
         });
         dlg.realize();
-    });
-    $('#myform').on('submit', function (e) {
-        e.preventDefault();
-        $(this).ajaxSubmit({
-            target: '#output'
-        });
     });
 });

@@ -36,10 +36,4 @@ $(document).ready(function () {
         });
         dlg.realize();
     });
-    $('#myform').on('submit', function (e) {
-        e.preventDefault();
-        $(this).ajaxSubmit({
-            target: '#output'
-        });
-    });
 });

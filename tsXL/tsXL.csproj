@@ -26,6 +26,7 @@
     <Content Include="require-2.1.8.js" />
     <Content Include="Scripts\2.js" />
     <Content Include="Scripts\bootstrap-dialog.js" />
+    <Content Include="Scripts\bootstrap-table.js" />
     <Content Include="Scripts\h5Valid.js" />
     <Content Include="Scripts\jasmine-2.5.2\boot.js" />
     <Content Include="Scripts\jasmine-2.5.2\console.js" />
@@ -100,6 +101,7 @@
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="gz\config.ts" />
     <TypeScriptCompile Include="gz\faceToFace.ts" />
+    <TypeScriptCompile Include="gz\GtoilCardRechargeApply.ts" />
     <TypeScriptCompile Include="gz\lib\fileUploadBeatutify.ts" />
     <TypeScriptCompile Include="gz\lib\sentvcodebutton.ts" />
     <TypeScriptCompile Include="gz\lib\uploadimgs.ts" />
@@ -200,4 +202,8 @@
     <TypeScriptSourceMap>false</TypeScriptSourceMap>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

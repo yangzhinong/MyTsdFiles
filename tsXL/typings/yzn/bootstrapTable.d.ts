@@ -79,7 +79,17 @@ interface bootstrapTableOption {
     detailView?: boolean; 
 
     onExpandRow?: (index: number, row: any, $detail: JQuery) => void;
-    ajax?: string | ((bootstrapTableAjaxParams)=>void);
+
+    onCheck?: (row: any) => void;
+    onUncheck?: (row: any) => void;
+    onCheckAll?: (rows: any) => void;
+    onUncheckAll?: (rows: any) => void;
+    onPageChange?: (number, size) => void;
+    onSearch?: (txt: string) => void;
+    onClickRow?: (item, $element: JQuery) => void;
+    onClickCell?: (field, value, row, $element) => void;
+    ajax?: string | ((bootstrapTableAjaxParams) => void);
+    onLoadSuccess?: (data?) => void;
    
 
 } 
@@ -115,6 +125,10 @@ interface JQuery {
     bootstrapTable(cmd: "getSelections"): any[];
     bootstrapTable(cmd: string, data: any): void;
     bootstrapTable(cmd: "checkBy", data: IbootstrapTableCheckByData): void;
+    bootstrapTable(cmd: "check", index: number): void;
+    bootstrapTable(cmd: "uncheck", index: number): void;
+    bootstrapTable(cmd: "checkAll"): void;
+
     
 
 }

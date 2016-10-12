@@ -1,5 +1,5 @@
 ﻿
-
+//使用部件,记到要引用css文件.
 export function initFileBtn($inputs: JQuery, uploadBtnText: string) {
 
     //<input type="file" name="file6" id="file6"  data-multiple-caption="{count} files selected" multiple />

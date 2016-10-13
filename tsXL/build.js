@@ -3,7 +3,8 @@
     baseUrl: "gz",
     dir: 'gzout',
     modules: [
-        { name: 'faceToFace' }
+        { name: 'faceToFace' },
+        { name: 'GToilCardExcelImport' }
     ],
     fileExclusionRegExp: /\.ts$/,
    // optimize: "uglify"

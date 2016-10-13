@@ -20,7 +20,9 @@
   <ItemGroup>
     <Content Include="app.css" />
     <Content Include="buildToDir.txt" />
-    <Content Include="gz\lib\jquery.custom-file-input.css" />
+    <Content Include="gz\lib\css\fileUploadBeatutify.css" />
+    <Content Include="Scripts\css.js" />
+    <Content Include="Scripts\css.min.js" />
     <Content Include="HtmlPage1.html" />
     <Content Include="index.html" />
     <Content Include="require-2.1.8.js" />
@@ -103,6 +105,7 @@
     <TypeScriptCompile Include="gz\faceToFace.ts" />
     <TypeScriptCompile Include="gz\GtoilCardRechargeApply.ts" />
     <TypeScriptCompile Include="gz\lib\fileUploadBeatutify.ts" />
+    <TypeScriptCompile Include="gz\lib\loadcss.ts" />
     <TypeScriptCompile Include="gz\lib\sentvcodebutton.ts" />
     <TypeScriptCompile Include="gz\lib\uploadimgs.ts" />
     <TypeScriptCompile Include="gz\lib\vbstring.ts" />
@@ -203,7 +206,6 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>$(ProjectDir)1.bat</PostBuildEvent>
   </PropertyGroup>
 </Project>

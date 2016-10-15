@@ -18,8 +18,10 @@
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="2.html" />
     <Content Include="app.css" />
     <Content Include="buildToDir.txt" />
+    <Content Include="gz\2.js" />
     <Content Include="gz\lib\css\fileUploadBeatutify.css" />
     <Content Include="Scripts\css.js" />
     <Content Include="Scripts\css.min.js" />
@@ -40,6 +42,8 @@
     <Content Include="Scripts\qunit\qunit-2.0.1.css" />
     <Content Include="Scripts\qunit\qunit-2.0.1.js" />
     <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\requirejs\example.build.js" />
+    <Content Include="Scripts\yzn\rconfig.js" />
     <Content Include="xml\build.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -97,6 +101,7 @@
     <Content Include="build.bat" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="gz\2.ts" />
     <TypeScriptCompile Include="gz\GToilCardExcelImport.ts" />
     <TypeScriptCompile Include="gz\1.ts" />
     <TypeScriptCompile Include="gz\AccountTransfer.ts" />
@@ -155,7 +160,6 @@
     <TypeScriptCompile Include="typings\yzn\windows.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\2.js.map" />
     <Content Include="Scripts\jqueryvalidation1.15\additional-methods.min.js.map" />
     <Content Include="Scripts\src\1.js.map" />
     <Content Include="Scripts\tsd.json" />
@@ -166,7 +170,9 @@
       <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
   </PropertyGroup>

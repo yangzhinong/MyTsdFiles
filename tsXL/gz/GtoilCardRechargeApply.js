@@ -58,7 +58,7 @@ $(document).ready(function () {
                             if (data.code) {
                                 dlg.close();
                                 layer.msg('申请成功', 3, 9 /* SmillingFace */, function () {
-                                    location.href = "/GTOilCard/Index";
+                                    location.href = "/GTOilCard/RechargeApplyList";
                                 });
                             }
                             else {
@@ -125,5 +125,80 @@ $(document).ready(function () {
             }
         });
         dlg.realize();
+    });
+    $('a.apply-audit').click(function () {
+        var $me = $(this);
+        var applyId = $me.attr("data-apply-id");
+        var $tr = $me.closest('tr');
+        var applyData = {
+            applynote: $tr.find('td.applynote').text(),
+            price: $tr.find('td.price').text(),
+            qty: $me.attr('data-apply-qty'),
+            applytime: $tr.find('td.applaytime').text(),
+            cardnos: $('td.qty', $tr).attr('data-cardnos')
+        };
+        var fbtnOk = function () {
+            var $me = $(this);
+            $me.enable(false);
+            var $frm = $me.closest('form');
+            if (!$.html5Validate.isAllpass($frm)) {
+                $me.enable(true);
+                return;
+            }
+            var postData = $frm.serialize() + '&applyid=' + applyId;
+            console.log(postData);
+            layer.load('正在处理...');
+            $.post('/GTOilCard/RechargeAudit', postData, function (data) {
+                if (data.code) {
+                    dlg.close();
+                    layer.closeAll();
+                    layer.msg(data.msg, 3, 9 /* SmillingFace */, function () {
+                        window.location.reload();
+                    });
+                }
+                else {
+                    layer.closeAll();
+                    layer.alert(data.msg, 8 /* CryingFace */);
+                    $me.enable(true);
+                }
+            });
+        };
+        var dlg = new BootstrapDialog({
+            title: '充值申请审核',
+            draggable: true,
+            message: function () {
+                var $div = $('<div/>');
+                $div.append($('#tpl-recharge-audit').html());
+                $('#btn-cancel', $div).click(function () {
+                    dlg.close();
+                });
+                $('#btn-ok', $div).click(fbtnOk);
+                $div.find("#applytime").text(applyData.applytime);
+                $div.find("#applynote").text(applyData.applynote);
+                $div.find('#price').val(applyData.price);
+                $div.find('#lbl-cardnos').text(applyData.qty);
+                $div.find('#cardnos').text(applyData.cardnos);
+                dlg.open();
+                return $div;
+            }
+        });
+        dlg.realize();
+    });
+    $('button.btn-manual-recharge').click(function () {
+        var $btn = $(this);
+        $btn.enable(false);
+        layer.load("正在处理");
+        $.post("/GTOilCard/ManualRechargeForErrorRecordLog", { logId: $btn.closest('tr').attr("data-id") }, function (data) {
+            layer.closeAll();
+            if (data.code) {
+                layer.msg(data.msg, 3, 9 /* SmillingFace */, function () {
+                    location.reload();
+                });
+            }
+            else {
+                layer.alert(data.msg, 8 /* CryingFace */);
+                $btn.enable(true);
+            }
+        });
     });
 });

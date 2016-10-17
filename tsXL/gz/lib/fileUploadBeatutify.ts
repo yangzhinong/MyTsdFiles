@@ -2,7 +2,7 @@
 
 //使用部件,记到要引用css文件.
 import * as cssTool from 'lib/loadcss';
-cssTool.loadCss('fileUploadBeatutify.css');
+cssTool.loadCss('lib/css/fileUploadBeatutify.css');
 export function initFileBtn($inputs: JQuery, uploadBtnText: string) {
     
    

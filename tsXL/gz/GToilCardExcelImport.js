@@ -1,4 +1,4 @@
-define(["require", "exports", 'lib/fileUploadBeatutify'], function (require, exports, fileTool) {
+define(["require", "exports", 'lib/fileUploadBeatutify', 'lib/oilcardselectdlg'], function (require, exports, fileTool, cardSelTool) {
     "use strict";
     $(document).ready(function () {
         $('#btn-import-excel').click(function () {
@@ -50,6 +50,15 @@ define(["require", "exports", 'lib/fileUploadBeatutify'], function (require, exp
                 ]
             });
             dlg.realize();
+        });
+        $('#btn-sale').click(function () {
+            cardSelTool.SelectGtOilCardToOperate({
+                urlOperate: '/GTOilCard/sale',
+                urlOpSucessRefresh: '/GTOilCard/Index',
+                urlLoadCardPage: '/GTOilCard/CardListForAPage?nosaled=true',
+                DlgTemplate: $('#tpl-sale').html(),
+                DlgTitle: '国通石油卡出售'
+            });
         });
     });
 });

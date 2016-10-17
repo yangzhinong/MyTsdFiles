@@ -1,5 +1,6 @@
 ﻿
 import * as fileTool from 'lib/fileUploadBeatutify';
+import * as cardSelTool from 'lib/oilcardselectdlg';
 
 $(document).ready(function () {
 
@@ -52,5 +53,15 @@ $(document).ready(function () {
             ]
         });
         dlg.realize();
+    });
+
+    $('#btn-sale').click(function () {
+        cardSelTool.SelectGtOilCardToOperate({
+            urlOperate: '/GTOilCard/sale',
+            urlOpSucessRefresh: '/GTOilCard/Index',
+            urlLoadCardPage: '/GTOilCard/CardListForAPage?nosaled=true',
+            DlgTemplate: $('#tpl-sale').html(),
+            DlgTitle:'国通石油卡出售'
+        });
     });
 });

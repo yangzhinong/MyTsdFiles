@@ -106,6 +106,7 @@
     <TypeScriptCompile Include="gz\GtoilCardRechargeApply.ts" />
     <TypeScriptCompile Include="gz\lib\fileUploadBeatutify.ts" />
     <TypeScriptCompile Include="gz\lib\loadcss.ts" />
+    <TypeScriptCompile Include="gz\lib\oilcardselectdlg.ts" />
     <TypeScriptCompile Include="gz\lib\sentvcodebutton.ts" />
     <TypeScriptCompile Include="gz\lib\uploadimgs.ts" />
     <TypeScriptCompile Include="gz\lib\vbstring.ts" />

@@ -18,7 +18,7 @@ interface IBootstrapDialog {
 
     //(options: IBootstrapDialogOptions): IBootstrapDialogContext;
     alert(message: string, closeCallback?: () => void): IBootstrapDialogInstance;
-    alert(options:IBootStrapSelectPickerOption):IBootstrapDialogInstance
+    alert(options: IBootstrapDialogOptions):IBootstrapDialogInstance
     confirm(message: string, closeCallback?: (result: boolean) => void): IBootstrapDialogInstance;
     confirm(options: IBootstrapDialogOptions): IBootstrapDialogInstance;
     show(options: IBootstrapDialogOptions): IBootstrapDialogInstance;

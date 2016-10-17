@@ -134,12 +134,29 @@ class VP {
                 var i =  Number($me.val());
 
                 if (i > 0) {
-                    layer.confirm("购买" + i.toFixed(0) + "小时内, 人民币金额不能进行旅游消费和转帐,但可进行民生消费, 是否确定?",
+                    layer.confirm("购买" + i.toFixed(0) + "小时内, 通用币金额不能进行旅游消费和转帐, 是否确定?",
                         function () {
                             $me.val(i.toFixed(0));
                             layer.closeAll();
 
                         }, '人民币限制旅游消费和转账确认', function () {
+                            $me.val(0);
+                        })
+                } else {
+                    $me.val(0);
+                }
+            });
+            $('#AmountLimitMSTime').change(function () {
+                var $me = $(this);
+                var i = Number($me.val());
+
+                if (i > 0) {
+                    layer.confirm("购买" + i.toFixed(0) + "小时内, 通用币金额不能进行民生消费, 是否确定?",
+                        function () {
+                            $me.val(i.toFixed(0));
+                            layer.closeAll();
+
+                        }, '通用币限制旅游民生消费确认', function () {
                             $me.val(0);
                         })
                 } else {

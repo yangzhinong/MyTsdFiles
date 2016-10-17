@@ -5,10 +5,11 @@ define('lib/loadcss',["require", "exports"], function (require, exports) {
         if (url.substr(-4).toLowerCase() != '.css') {
             url = url + '.css';
         }
-        if (url.substr(0, 1) != '/') {
-            var myBaseCssPath = "/js/gz/lib/css/";
-            url = myBaseCssPath + url;
-        }
+        url = require.toUrl(url);
+        //if (url.substr(0, 1) != '/') {
+        //    var myBaseCssPath = "/js/gz/lib/css/";
+        //    url = myBaseCssPath + url;
+        //}
         if ($('link[href="' + url + '"]', $(head)).length == 0) {
             if (useImportLoad)
                 importLoad(url, function () { });
@@ -112,7 +113,7 @@ define('lib/loadcss',["require", "exports"], function (require, exports) {
 
 define('lib/fileUploadBeatutify',["require", "exports", 'lib/loadcss'], function (require, exports, cssTool) {
     "use strict";
-    cssTool.loadCss('fileUploadBeatutify.css');
+    cssTool.loadCss('lib/css/fileUploadBeatutify.css');
     function initFileBtn($inputs, uploadBtnText) {
         //<input type="file" name="file6" id="file6"  data-multiple-caption="{count} files selected" multiple />
         var htmlLable = '<label for="file"><span></span><strong><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z" /></svg> ' +
@@ -143,7 +144,139 @@ define('lib/fileUploadBeatutify',["require", "exports", 'lib/loadcss'], function
     exports.initFileBtn = initFileBtn;
 });
 
-define('GToilCardExcelImport',["require", "exports", 'lib/fileUploadBeatutify'], function (require, exports, fileTool) {
+define('lib/oilcardselectdlg',["require", "exports"], function (require, exports) {
+    "use strict";
+    function SelectGtOilCardToOperate(opt) {
+        var dlg = new BootstrapDialog({
+            draggable: true,
+            title: opt.DlgTitle,
+            cssClass: 'recharge',
+            message: function () {
+                var $div = $('<div/>');
+                $div.append(opt.DlgTemplate);
+                var $table = $div.find('table');
+                var fAddSels = function (newSels) {
+                    var lst = dlg.getData('yzn') || [];
+                    $.each(newSels, function (i, e) {
+                        if ($.inArray(e.cardno, lst) < 0) {
+                            lst.push(e.cardno);
+                        }
+                    });
+                    dlg.setData('yzn', lst);
+                    $div.find('#cardnos').text(lst.join(' , '));
+                    $div.find('#lbl-cardnos').text(lst.length);
+                    if (lst.length > 100) {
+                        layer.alert("你选择了 " + lst.length.toString() + ' 张卡! (最多只能选择100张)');
+                    }
+                };
+                var fDelSels = function (delSels) {
+                    var lst = dlg.getData('yzn') || [];
+                    $.each(delSels, function (i, e) {
+                        var ix = $.inArray(e.cardno, lst);
+                        if (ix > -1) {
+                            lst.splice(ix, 1);
+                        }
+                    });
+                    dlg.setData('yzn', lst);
+                    $div.find('#lbl-cardnos').text(lst.length);
+                    $div.find('#cardnos').text(lst.join(' , '));
+                };
+                $div.find('#btn-clearall').click(function () {
+                    var lst = [];
+                    dlg.setData('yzn', lst);
+                    $div.find('#cardnos').text('');
+                    $table.bootstrapTable('uncheckAll');
+                });
+                $div.find('#btn-ok').click(function () {
+                    var $btn = $(this);
+                    $btn.enable(false);
+                    var $frm = $(this).closest('form');
+                    if ($.html5Validate.isAllpass($frm)) {
+                        var lst = dlg.getData('yzn') || [];
+                        if (lst.length > 100) {
+                            layer.alert("你选择了 " + lst.length.toString() + ' 张卡! 请减少申请卡数(最多只能选择100张)');
+                            $btn.enable(true);
+                            return;
+                        }
+                        layer.load('正在处理...');
+                        $.post(opt.urlOperate, $frm.serialize(), function (data) {
+                            $btn.enable(true);
+                            layer.closeAll();
+                            if (data.code) {
+                                dlg.close();
+                                layer.msg(data.msg, 3, 9 /* SmillingFace */, function () {
+                                    location.href = opt.urlOpSucessRefresh;
+                                });
+                            }
+                            else {
+                                layer.alert(data.msg, 8 /* CryingFace */);
+                            }
+                        });
+                    }
+                    $btn.enable(true);
+                });
+                $table.bootstrapTable({
+                    ajax: function (param) {
+                        console.log(param.data);
+                        $.post(opt.urlLoadCardPage, param.data, function (data) {
+                            var lst = dlg.getData('yzn') || [];
+                            if (lst.length > 0) {
+                                $.each(data.rows, function (i, e) {
+                                    if ($.inArray(e.cardno, lst) > -1) {
+                                        e.state = true;
+                                    }
+                                });
+                            }
+                            param.success({
+                                total: data.total,
+                                rows: data.rows
+                            });
+                        });
+                    },
+                    onClickCell: function (field, value, row, $element) {
+                    },
+                    onCheck: function (row) {
+                        console.log('onCheck');
+                        fAddSels([row]);
+                        console.log(row);
+                    },
+                    onUncheck: function (row) {
+                        console.log('onUncheck');
+                        fDelSels([row]);
+                        console.log(row);
+                    },
+                    onCheckAll: function (rows) {
+                        console.log('onCheckAll');
+                        fAddSels(rows);
+                        console.log(rows);
+                    },
+                    onUncheckAll: function (rows) {
+                        fDelSels(rows);
+                        console.log('onUncheckAll');
+                        console.log(rows);
+                    },
+                    onLoadSuccess: function (data) {
+                        console.log('onLoadSuccess');
+                        console.log(data);
+                    },
+                });
+                $div.find('#button').click(function () {
+                    alert('getAllSelections: ' + JSON.stringify($table.bootstrapTable('getAllSelections')));
+                });
+                dlg.open();
+                return $div;
+            },
+            onshown: function () {
+                var $table = dlg.$modalBody.find('table');
+                $table.bootstrapTable('resetView');
+            }
+        });
+        dlg.realize();
+    }
+    exports.SelectGtOilCardToOperate = SelectGtOilCardToOperate;
+});
+
+define('GToilCardExcelImport',["require", "exports", 'lib/fileUploadBeatutify', 'lib/oilcardselectdlg'], function (require, exports, fileTool, cardSelTool) {
     "use strict";
     $(document).ready(function () {
         $('#btn-import-excel').click(function () {
@@ -195,6 +328,15 @@ define('GToilCardExcelImport',["require", "exports", 'lib/fileUploadBeatutify'],
                 ]
             });
             dlg.realize();
+        });
+        $('#btn-sale').click(function () {
+            cardSelTool.SelectGtOilCardToOperate({
+                urlOperate: '/GTOilCard/sale',
+                urlOpSucessRefresh: '/GTOilCard/Index',
+                urlLoadCardPage: '/GTOilCard/CardListForAPage?nosaled=true',
+                DlgTemplate: $('#tpl-sale').html(),
+                DlgTitle: '国通石油卡出售'
+            });
         });
     });
 });

@@ -3,12 +3,12 @@
         var dlg = new BootstrapDialog({
             draggable: true,
             title: '国通石油卡充值申请',
-            cssClass:'recharge',
+            cssClass: 'recharge',
             message: function () {
                 var $div = $('<div/>');
                 $div.append($('#tpl-recharge-apply').html());
                 var $table = $div.find('table');
-                var fAddSels = function (newSels :any[]) {
+                var fAddSels = function (newSels: any[]) {
                     let lst: string[] = dlg.getData('yzn') || [];
                     $.each(newSels, function (i, e) {
                         if ($.inArray(e.cardno, lst) < 0) {
@@ -59,14 +59,14 @@
                             if (data.code) {
                                 dlg.close();
                                 layer.msg('申请成功', 3, LayerIcon.SmillingFace, function () {
-                                    location.href = "/GTOilCard/Index";
+                                    location.href = "/GTOilCard/RechargeApplyList";
                                 });
                             } else {
                                 layer.alert(data.msg, LayerIcon.CryingFace);
                             }
 
                         });
-                       
+
                     }
                     $btn.enable(true);
 
@@ -123,10 +123,106 @@
                 return $div;
             },
             onshown: function () {
-                    var $table = dlg.$modalBody.find('table');
-                    $table.bootstrapTable('resetView');
+                var $table = dlg.$modalBody.find('table');
+                $table.bootstrapTable('resetView');
             }
         });
         dlg.realize();
     });
+
+
+    $('a.apply-audit').click(function () {
+        var $me = $(this);
+        var applyId = $me.attr("data-apply-id");
+        var $tr = $me.closest('tr');
+        var applyData = {
+            applynote: $tr.find('td.applynote').text(),
+            price: $tr.find('td.price').text(),
+            qty: $me.attr('data-apply-qty'),
+            applytime: $tr.find('td.applaytime').text(),
+            cardnos: $('td.qty',$tr).attr('data-cardnos')
+        };
+
+        var fbtnOk = function () {
+            var $me = $(this);
+            $me.enable(false);
+            var $frm = $me.closest('form');
+            if (!$.html5Validate.isAllpass($frm)) {
+                $me.enable(true);
+                return;
+            }
+
+
+            var postData = $frm.serialize() + '&applyid=' + applyId;
+            console.log(postData);
+            layer.load('正在处理...');
+            $.post('/GTOilCard/RechargeAudit', postData, function (data: IJsonMsg) {
+                if (data.code) {
+                    dlg.close();
+                    layer.closeAll();
+                    layer.msg(data.msg, 3, LayerIcon.SmillingFace, function () {
+                        window.location.reload();
+                    });
+                } else {
+                    layer.closeAll();
+                    layer.alert(data.msg, LayerIcon.CryingFace);
+                    $me.enable(true);
+                }
+            });
+        };
+
+        var dlg = new BootstrapDialog({
+            title: '充值申请审核',
+            draggable: true,
+            message: function () {
+                var $div = $('<div/>');
+                $div.append($('#tpl-recharge-audit').html());
+
+                $('#btn-cancel', $div).click(function () {
+                    dlg.close();
+                });
+                $('#btn-ok', $div).click(fbtnOk);
+                $div.find("#applytime").text(applyData.applytime);
+                $div.find("#applynote").text(applyData.applynote);
+                $div.find('#price').val(applyData.price);
+                $div.find('#lbl-cardnos').text(applyData.qty);
+                $div.find('#cardnos').text(applyData.cardnos);
+
+                dlg.open();
+                return $div;
+            }
+
+
+
+        });
+
+        dlg.realize();
+
+
+
+
+
+    });
+
+    $('button.btn-manual-recharge').click(function () {
+        var $btn = $(this);
+        $btn.enable(false);
+        layer.load("正在处理");
+        $.post("/GTOilCard/ManualRechargeForErrorRecordLog",
+            { logId: $btn.closest('tr').attr("data-id") },
+            function (data: IJsonMsg) {
+                layer.closeAll();
+                if (data.code) {
+                    layer.msg(data.msg, 3, LayerIcon.SmillingFace, function () {
+                        location.reload();
+                    });
+                } else {
+                    layer.alert(data.msg, LayerIcon.CryingFace);
+                    $btn.enable(true);
+                }
+            }
+        );
+
+    });
+
 });

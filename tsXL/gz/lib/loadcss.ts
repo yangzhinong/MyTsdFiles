@@ -7,10 +7,11 @@ export function loadCss(url: string) {
         url = url + '.css';
     }
 
-    if (url.substr(0, 1) != '/') {
-        var myBaseCssPath = "/js/gz/lib/css/";
-        url = myBaseCssPath + url;
-    }
+     url= require.toUrl(url);
+    //if (url.substr(0, 1) != '/') {
+    //    var myBaseCssPath = "/js/gz/lib/css/";
+    //    url = myBaseCssPath + url;
+    //}
 
     if ($('link[href="' + url + '"]', $(head)).length == 0) {
         if (useImportLoad)

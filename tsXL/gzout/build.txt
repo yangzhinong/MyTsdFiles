@@ -12,4 +12,5 @@ GToilCardExcelImport.js
 ----------------
 lib/loadcss.js
 lib/fileUploadBeatutify.js
+lib/oilcardselectdlg.js
 GToilCardExcelImport.js

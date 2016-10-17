@@ -5,10 +5,11 @@ define(["require", "exports"], function (require, exports) {
         if (url.substr(-4).toLowerCase() != '.css') {
             url = url + '.css';
         }
-        if (url.substr(0, 1) != '/') {
-            var myBaseCssPath = "/js/gz/lib/css/";
-            url = myBaseCssPath + url;
-        }
+        url = require.toUrl(url);
+        //if (url.substr(0, 1) != '/') {
+        //    var myBaseCssPath = "/js/gz/lib/css/";
+        //    url = myBaseCssPath + url;
+        //}
         if ($('link[href="' + url + '"]', $(head)).length == 0) {
             if (useImportLoad)
                 importLoad(url, function () { });

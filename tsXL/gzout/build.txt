@@ -17,6 +17,5 @@ GToilCardExcelImport.js
 
 2.js
 ----------------
-lib/loadcss.js
 2.js
 1.js

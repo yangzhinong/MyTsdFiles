@@ -258,7 +258,7 @@ define('lib/oilcardselectdlg',["require", "exports"], function (require, exports
                     onLoadSuccess: function (data) {
                         console.log('onLoadSuccess');
                         console.log(data);
-                    },
+                    }
                 });
                 $div.find('#button').click(function () {
                     alert('getAllSelections: ' + JSON.stringify($table.bootstrapTable('getAllSelections')));

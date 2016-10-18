@@ -111,7 +111,7 @@ $(document).ready(function () {
                     onLoadSuccess: function (data) {
                         console.log('onLoadSuccess');
                         console.log(data);
-                    },
+                    }
                 });
                 $div.find('#button').click(function () {
                     alert('getAllSelections: ' + JSON.stringify($table.bootstrapTable('getAllSelections')));

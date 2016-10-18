@@ -1,5 +1,10 @@
-var lst = _.map([1, 2, 3], function (n) {
-    return n * 3;
+var dlg = new BootstrapDialog({
+    title: 'hello',
+    message: 'afafa'
 });
-console.log(lst);
-//import * as m from 'moment';
+var opt;
+opt.data = [
+    { id: 5, name: 'yzn' }
+];
+dlg.open();
+$('dafa').bootstrapTable({});

@@ -46,9 +46,9 @@ define(["require", "exports"], function (require, exports) {
                     $btn.enable(false);
                     var $frm = $(this).closest('form');
                     if ($.html5Validate.isAllpass($frm)) {
-                        var lst_1 = dlg.getData('yzn') || [];
-                        if (lst_1.length > 100) {
-                            layer.alert("你选择了 " + lst_1.length.toString() + ' 张卡! 请减少申请卡数(最多只能选择100张)');
+                        var lst = dlg.getData('yzn') || [];
+                        if (lst.length > 100) {
+                            layer.alert("你选择了 " + lst.length.toString() + ' 张卡! 请减少申请卡数(最多只能选择100张)');
                             $btn.enable(true);
                             return;
                         }
@@ -112,7 +112,7 @@ define(["require", "exports"], function (require, exports) {
                     onLoadSuccess: function (data) {
                         console.log('onLoadSuccess');
                         console.log(data);
-                    },
+                    }
                 });
                 $div.find('#button').click(function () {
                     alert('getAllSelections: ' + JSON.stringify($table.bootstrapTable('getAllSelections')));

@@ -7,7 +7,7 @@ $(document).ready(function () {
             maxmin: false,
             shadeClose: false,
             page: {
-                html: $('#tx-template').html(),
+                html: $('#tx-template').html()
             },
             shift: 'left',
             //fadeIn: 300,

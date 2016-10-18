@@ -1,10 +1,18 @@
-﻿var lst=_.map([1, 2, 3], function (n) {
-    return n * 3;
+﻿var dlg = new BootstrapDialog({
+    title: 'hello',
+    message: 'afafa'
+
+
+})
+
+var opt: BootStrapTable.IOption<{ id: number, name: string }>;
+
+opt.data = [
+    { id:5, name:'yzn'}
+    ]
+
+dlg.open();
+
+$('dafa').bootstrapTable({
+    
 });
-
-console.log(lst);
-
-//import * as m from 'moment';
-
-
-

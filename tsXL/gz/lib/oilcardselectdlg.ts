@@ -78,7 +78,7 @@ export function SelectGtOilCardToOperate(opt: ISelectGtOilCardToOperate) {
 
             });
             $table.bootstrapTable({
-                ajax: function (param: bootstrapTableAjaxParams) {
+                ajax: function (param: BootStrapTable.IAjaxParams) {
                     console.log(param.data);
                     $.post(opt.urlLoadCardPage, param.data, function (data) {
                         let lst: string[] = dlg.getData('yzn') || [];

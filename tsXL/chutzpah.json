@@ -6,7 +6,7 @@
     "References" : [
       { "Path": "require-2.1.8.js" },
 	    { "Path": "typings/requirejs/require.d.ts", "IncludeInTestHarness": "false" },
-        { "Path": "typings/jasmine/jasmine.d.ts","IncludeInTestHarness": "false"  }
+      { "Path": "typings/jasmine/jasmine.d.ts","IncludeInTestHarness": "false"  }
     ],
     "Tests" : [
         { "Path": "tests" },

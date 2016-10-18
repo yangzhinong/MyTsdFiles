@@ -21,7 +21,6 @@
     <Content Include="2.html" />
     <Content Include="app.css" />
     <Content Include="buildToDir.txt" />
-    <Content Include="gz\2.js" />
     <Content Include="gz\lib\css\fileUploadBeatutify.css" />
     <Content Include="Scripts\css.js" />
     <Content Include="Scripts\css.min.js" />
@@ -39,6 +38,13 @@
     <Content Include="Scripts\jasmine-2.5.2\jasmine.js" />
     <Content Include="Scripts\jasmine-2.5.2\jasmine_favicon.png" />
     <Content Include="Scripts\jquery.form.js" />
+    <Content Include="Scripts\lodash\lodash.core.js" />
+    <Content Include="Scripts\lodash\lodash.core.min.js" />
+    <Content Include="Scripts\lodash\lodash.fp.js" />
+    <Content Include="Scripts\lodash\lodash.fp.min.js" />
+    <Content Include="Scripts\lodash\lodash.js" />
+    <Content Include="Scripts\lodash\lodash.min.js" />
+    <Content Include="Scripts\lodash\mapping.fp.js" />
     <Content Include="Scripts\qunit\qunit-2.0.1.css" />
     <Content Include="Scripts\qunit\qunit-2.0.1.js" />
     <Content Include="Scripts\require.js" />
@@ -95,6 +101,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="xml\1.bat" />
+    <Content Include="tsconfig.json" />
     <None Include="xml\nant.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -134,6 +141,7 @@
     <TypeScriptCompile Include="typings\jquery.form\jquery.form.d.ts" />
     <TypeScriptCompile Include="typings\jquery.validation\jquery.validation.d.ts" />
     <TypeScriptCompile Include="typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="typings\lodash\lodash.d.ts" />
     <TypeScriptCompile Include="typings\moment\moment.d.ts" />
     <TypeScriptCompile Include="typings\react-bootstrap\react-bootstrap.d.ts" />
     <TypeScriptCompile Include="typings\react\react-addons-create-fragment.d.ts" />

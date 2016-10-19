@@ -5,6 +5,8 @@ declare namespace BootStrapTable {
         disabled?: boolean, checked?: boolean, value?: any
     } | string;
 
+    type IFormatter = string | ((value: any, row?: any, index?: number)=> BootStrapTable.IFormatterReturn);
+
     interface IColParam {
         radio?: boolean;
         checkbox?: boolean;  //使用复选项?
@@ -24,8 +26,7 @@ declare namespace BootStrapTable {
         clickToSelect?: boolean;  //True to select checkbox or radio when the column is clicked.
 
 
-        formatter?: (value: any, row?: any, index?: number)
-            => BootStrapTable.IFormatterReturn;  //其中子符串可以为"ID %s", 或者一个函数名. 
+        formatter?: IFormatter;  //其中子符串可以为"ID %s", 或者一个函数名. 
 
         //如果是一个函数名,则 这个函数的返回值是一个html字符串.
     }
@@ -37,6 +38,18 @@ declare namespace BootStrapTable {
         url?: string;
         method?: 'get' | 'post';
         cache?: boolean,
+        contentType?: string, //'application/json' The contentType of request remote data.
+        dataType?: string, //'json' The type of data that you are expecting back from the server.
+
+            //When requesting remote data, you can send additional parameters by modifying queryParams.
+            // If queryParamsType = 'limit', the params object contains:
+                   //limit, offset, search, sort, order
+            // Else, it contains:
+            //pageSize, pageNumber, searchText, sortName, sortOrder.
+            //Return false to stop request.
+        queryParams?: (params: any) => any; 
+
+        queryParamsType?: string; //Set 'limit' to send query params width RESTFul type. 从源码看这个参没有用
         icons?: any;  // 自定义图标 { }
         iconsPrefix?: string;
         classes?: string;  //table table-hover
@@ -90,11 +103,11 @@ declare namespace BootStrapTable {
         // $detail是展开后的容器.
         onExpandRow?: (index: number, row: R, $detail: JQuery) => void;
 
-        onCheck?: (row: R) => void;
-        onUncheck?: (row: R) => void;
+        onCheck?: (row: R, $e?:JQuery) => void;
+        onUncheck?: (row: R,$e?:JQuery) => void;
         onCheckAll?: (rows: R[]) => void;
         onUncheckAll?: (rows: R[]) => void;
-        onPageChange?: (number, size) => void;
+        //onPageChange?: (number, size) => void;
         onSearch?: (txt: string) => void;
 
         //Fires when user click a row, the parameters contain: 
@@ -111,10 +124,18 @@ declare namespace BootStrapTable {
         //    $element: the td element.
 
         onClickCell?: (field: string, value, row: R, $element) => void;
-        ajax?: string | ((p:IAjaxParams) => void);
+        onDblClickCell?: (field: string, value, row: R, $element) => void;
+
+        //name: the sort column field name
+        //order: the sort column order.
+        onSort?: (field: string, order: 'asc' | 'desc') => void;
+
+        ajax?: string | ((p: IAjaxParams) => void); //A method to replace ajax call. Should implement the same API as jQuery ajax method.
         onLoadSuccess?: (data?: R[]) => void;
-
-
+        onLoadError?: (status, res) => void;
+        onColumnSwitch?: (field: string, checked: boolean) => void; //Fires when switch the column visible.
+        onColumnSearch?: (field: string, text: string) => void; //Fires when search by column.
+        onPageChange?: (pageIndex: number, pageSize: number) => void; //Fires when change the page number or page size.
     }
 
     interface IAjaxParams {
@@ -168,7 +189,7 @@ interface JQuery {
     bootstrapTable(cmd: "check" | 'uncheck', index: number): void;
  
     //bootstrapTable(cmd: "checkAll"): void;
-
+    //getSelections-Return selected rows, when no record selected, an empty array will return
 
 
 //    var allowedMethods = [

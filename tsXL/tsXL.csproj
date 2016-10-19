@@ -261,6 +261,11 @@
     <Content Include="Scripts\lodash\lodash.js" />
     <Content Include="Scripts\lodash\lodash.min.js" />
     <Content Include="Scripts\lodash\mapping.fp.js" />
+    <Content Include="Scripts\moment\locales.js" />
+    <Content Include="Scripts\moment\locales.min.js" />
+    <Content Include="Scripts\moment\locale\zh-cn.js" />
+    <Content Include="Scripts\moment\moment-with-locales.js" />
+    <Content Include="Scripts\moment\moment-with-locales.min.js" />
     <Content Include="Scripts\qunit\qunit-2.0.1.css" />
     <Content Include="Scripts\qunit\qunit-2.0.1.js" />
     <Content Include="Scripts\require.js" />
@@ -336,6 +341,7 @@
     <TypeScriptCompile Include="gz\config.ts" />
     <TypeScriptCompile Include="gz\faceToFace.ts" />
     <TypeScriptCompile Include="gz\GtoilCardRechargeApply.ts" />
+    <TypeScriptCompile Include="gz\lib\datetool.ts" />
     <TypeScriptCompile Include="gz\lib\fileUploadBeatutify.ts" />
     <TypeScriptCompile Include="gz\lib\loadcss.ts" />
     <TypeScriptCompile Include="gz\lib\oilcardselectdlg.ts" />
@@ -435,7 +441,7 @@
     <TypeScriptModuleKind>amd</TypeScriptModuleKind>
     <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
     <TypeScriptSourceMap>False</TypeScriptSourceMap>
-    <TypeScriptAllowSyntheticDefaultImports>true</TypeScriptAllowSyntheticDefaultImports>
+   
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TypeScriptRemoveComments>true</TypeScriptRemoveComments>

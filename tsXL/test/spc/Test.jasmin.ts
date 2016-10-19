@@ -18,3 +18,19 @@ describe("A suite", function () {
     });
 
 });
+
+import * as dTool from '../../gz/lib/datetool';
+
+describe("Date Tool", function () {
+    var d = new Date();
+
+    it('format To Date', function () {
+
+        expect('2016-10-19').toBe(dTool.Format(d, "yyyy-MM-dd"));
+    });
+    it('format To Time', function () {
+
+        expect('2016-10-19').toBe(dTool.Format(d, "HH:mm:ss"));
+    });
+});
+

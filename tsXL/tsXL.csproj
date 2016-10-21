@@ -321,6 +321,9 @@
     <Content Include="Scripts\skin\layer.ext.css" />
     <Content Include="Scripts\src\1.js" />
     <Content Include="typings\yzn\readme.txt" />
+    <Content Include="Scripts\lodash\lodash.min.js.map">
+      <DependentUpon>lodash.min.js</DependentUpon>
+    </Content>
     <None Include="Scripts\_references.js" />
     <Content Include="web.config">
       <SubType>Designer</SubType>
@@ -356,6 +359,7 @@
     <TypeScriptCompile Include="node_modules\moment\moment.d.ts" />
     <TypeScriptCompile Include="Scripts\src\1.ts" />
     <TypeScriptCompile Include="gz\SysSetting.ts" />
+    <TypeScriptCompile Include="test\spc\lodashxl.ts" />
     <TypeScriptCompile Include="test\spc\Test.jasmin.ts" />
     <TypeScriptCompile Include="test\src\add.ts" />
     <TypeScriptCompile Include="test\src\generator.ts" />
@@ -441,7 +445,6 @@
     <TypeScriptModuleKind>amd</TypeScriptModuleKind>
     <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
     <TypeScriptSourceMap>False</TypeScriptSourceMap>
-   
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TypeScriptRemoveComments>true</TypeScriptRemoveComments>

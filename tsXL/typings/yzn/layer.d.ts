@@ -35,6 +35,8 @@ declare const enum LayerIcon {
 
 
 interface Ilayer {
+    use(urlExt: string, fn?: (() => void)): void;
+    ext: Function;
     // icon:9-ok  , 8-error
     alert(msg: string, icon?: number): void;
     alert(msg: string, icon: number, ok: () => void);

@@ -1,26 +1,26 @@
 ﻿interface JQuery {
 
     // data-属性 参见 : https://silviomoreto.github.io/bootstrap-select/options/
-    selectpicker(cmd: string);
+    //selectpicker(cmd: string);
     selectpicker(val: string, newValue:any);
     selectpicker(cmd: string, sNewStype: string, opt:string);
     selectpicker(cmd: 'val');  //get value
     selectpicker(cmd: 'val', newValue: string | string[]); //set value
 
-    selectpicker(cmd: 'selectAll');
-    selectpicker(cmd: 'deselectAll');
+    selectpicker(cmd: 'selectAll' | 'deselectAll');
+   
 
-    selectpicker(cmd: 'render'); //强制重绘UI  This is useful if you programatically change any underlying values that affect the layout of the element.
-    selectpicker(cmd: 'mobile')
+    //selectpicker(cmd: 'render'); //强制重绘UI  This is useful if you programatically change any underlying values that affect the layout of the element.
+    //selectpicker(cmd: 'mobile')
     selectpicker(cmd: 'setStyle',sNewStype:string) //修改样式后调用.
     selectpicker(cmd: 'setStyle', sNewStype: string, opt: 'add' | 'remove'); //修改样式后调用.
-    selectpicker(cmd: 'refresh');
-    selectpicker(cmd: 'render');
+    //selectpicker(cmd: 'refresh');
+   
 
-    selectpicker(cmd: 'toggle'); //menu open/closed
-    selectpicker(cmd: 'hide');
-    selectpicker(cmd: 'show');
-    selectpicker(cmd: 'destroy');
+    //selectpicker(cmd: 'toggle'); //menu open/closed
+    //selectpicker(cmd: 'hide');
+    selectpicker(cmd: 'show' | 'hide' | 'toggle' | 'destroy' | 'refresh' | 'render' |'mobile');
+    //selectpicker(cmd: 'destroy');
     selectpicker(opt:IBootStrapSelectPickerOption);
     
     

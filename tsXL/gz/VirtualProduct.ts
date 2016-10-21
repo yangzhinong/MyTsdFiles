@@ -125,6 +125,17 @@ class VP {
                             console.log(shops);
                             $('#TourShopIds').selectpicker({}).selectpicker('val', shops.split(','));
                     }
+                    $('input.amount').each(function (i, e) {
+                        var amount = Number($(e).val());
+
+                        var iType = $(e).attr('mtype');
+                        var sel = `div.glimit[data-money-type=${iType}]`;
+                        if (amount > 0) {
+                            $(sel).removeClass("hidden");
+                        } else {
+                            $(sel).addClass("hidden");
+                        }
+                    });
                     break;
             }
             

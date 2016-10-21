@@ -18,6 +18,7 @@ define(["require", "exports", 'test/src/add', '../../gz/lib/datetool'], function
     describe("Date Tool", function () {
         var d = new Date();
         it('format To Date', function () {
+            console.log('hello');
             expect('2016-10-19').toBe(dTool.Format(d, "yyyy-MM-dd"));
         });
         it('format To Time', function () {

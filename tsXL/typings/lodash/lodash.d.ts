@@ -6079,6 +6079,8 @@ declare module _ {
             collection: List<T>|Dictionary<T>,
             ...props: (number|string|(number|string)[])[]
         ): T[];
+
+        at(obj: Object, propName: string[]):any[];
     }
 
     interface LoDashImplicitArrayWrapper<T> {
@@ -6527,6 +6529,14 @@ declare module _ {
             collection: List<T>|Dictionary<T>|NumericDictionary<T>,
             predicate?: TObject
         ): boolean;
+        /**
+         * @see _.every yzn add 对一个对象数组, 对它的某个属性 是否都待于value
+         */
+        every(list: Object[], aPropName: string, value: any): boolean;
+        /**
+         * @see _.every yzn Add 针对一个对象, 求它的属性值 是不是都满足函数fn
+         */
+        every(aObj: Object, fn: ((propValue: any) => boolean)): boolean;
     }
 
     interface LoDashImplicitArrayWrapper<T> {
@@ -6677,6 +6687,9 @@ declare module _ {
             collection: List<T>|Dictionary<T>,
             predicate: W
         ): T[];
+
+        filter(obj: Object, f: (propValue:any)=>boolean): any[];
+        
     }
 
     interface LoDashImplicitWrapper<T> {
@@ -7723,6 +7736,8 @@ declare module _ {
             target: string,
             fromIndex?: number
         ): boolean;
+        
+        includes(obj: Object, propValue: any): boolean;
     }
 
     interface LoDashImplicitArrayWrapper<T> {

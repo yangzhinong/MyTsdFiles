@@ -192,7 +192,9 @@ $(document).ready(function () {
             layer.closeAll();
             if (data.code) {
                 layer.msg(data.msg, 3, 9 /* SmillingFace */, function () {
-                    location.reload();
+                    $btn.closest('tr').find('td.status').html('<label class="label label-primary">充值成功</label>');
+                    $btn.remove();
+                    // location.reload();
                 });
             }
             else {
@@ -201,4 +203,53 @@ $(document).ready(function () {
             }
         });
     });
+    layer.use('extend/layer.ext.js');
+    $('button.btn-send-mail').click(function () {
+        var $me = $(this);
+        var $tr = $me.closest('tr');
+        var weLogNo = $me.attr("data-out-trade-no");
+        var gLogId = $tr.attr("data-id");
+        $me.enable(false);
+        setTimeout(function () { $me.enable(true); }, 100);
+        layer.prompt({ title: '请输入邮寄信息', type: 3 }, function (val) {
+            $.post("/GTOilCard/SendMail", { weLogNo: weLogNo, gLogId: gLogId, note: val }, function (data) {
+                if (data.code) {
+                    layer.msg(data.msg, 3, 9 /* SmillingFace */);
+                    $me.remove();
+                    var dnow = FormatDate(new Date(), 'yyyy.MM.dd HH:mm');
+                    var dHtml = "<label class=\"label label-primary\">\u5DF2\u5BC4\u51FA</label><br/>" + dnow;
+                    $tr.find('td.issendmail').html(dHtml);
+                    $tr.find('td.mailremark').html(val);
+                }
+                else {
+                    layer.alert(data.msg, 8 /* CryingFace */);
+                }
+            });
+        });
+    });
+    // 对Date的扩展，将 Date 转化为指定格式的String
+    // 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符， 
+    // 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字) 
+    // 例子： 
+    // (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423 
+    // (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18 
+    function FormatDate(d, fmt) {
+        fmt = fmt.replace('HH', 'hh');
+        //fmt = fmt.replace('DD', 'dd');
+        var o = {
+            "M+": d.getMonth() + 1,
+            "d+": d.getDate(),
+            "h+": d.getHours(),
+            "m+": d.getMinutes(),
+            "s+": d.getSeconds(),
+            "q+": Math.floor((d.getMonth() + 3) / 3),
+            "S": d.getMilliseconds() //毫秒 
+        };
+        if (/(y+)/.test(fmt))
+            fmt = fmt.replace(RegExp.$1, (d.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt))
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
 });

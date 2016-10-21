@@ -8,6 +8,19 @@ const enum ViewType {
 }
 declare var shops: string;  //全局变量
 
+namespace IVP {
+
+    export interface PConditionInfo {
+        MoneyType: number;
+        IsValidDate: boolean;
+        StartDate: string;
+        EndDate: string;
+        AmountLimitTime: number;
+        AmountLimitMSTime: number;
+    }
+}
+
+
 
 class VP {
     public  IndexInit() {
@@ -129,55 +142,104 @@ class VP {
                 }
             });
 
-            $('#AmountLimitTime').change(function () {
+            $('select.sel-limit-mode').change(function () {
+                let $me = $(this);
+                let $frmGroup = $me.closest('.form-group');
+                $frmGroup.find("div.limit-mode").addClass("hidden");
+                if ($me.val() != "") {
+                    $frmGroup.find("div." + $me.val()).removeClass("hidden");
+                }
+            });
+
+            
+            $('input[name="PerAmountLimitTime"]').change( function() {
                 var $me = $(this);
                 var i =  Number($me.val());
 
                 if (i > 0) {
-                    layer.confirm("购买" + i.toFixed(0) + "小时内, 通用币金额不能进行旅游消费和转帐, 是否确定?",
+                    layer.confirm("购买" + i.toFixed(0) + "小时内, 该币种金额不能进行旅游消费和转帐, 是否确定?",
                         function () {
                             $me.val(i.toFixed(0));
                             layer.closeAll();
 
-                        }, '人民币限制旅游消费和转账确认', function () {
+                        }, '限制旅游消费和转账确认', function () {
                             $me.val(0);
                         })
                 } else {
                     $me.val(0);
                 }
             });
-            $('#AmountLimitMSTime').change(function () {
+            $('input[name="PerAmountLimitMSTime"]').change(function () {
                 var $me = $(this);
                 var i = Number($me.val());
 
                 if (i > 0) {
-                    layer.confirm("购买" + i.toFixed(0) + "小时内, 通用币金额不能进行民生消费, 是否确定?",
+                    layer.confirm("购买" + i.toFixed(0) + "小时内, 该币种金额不能进行民生消费, 是否确定?",
                         function () {
                             $me.val(i.toFixed(0));
                             layer.closeAll();
 
-                        }, '通用币限制旅游民生消费确认', function () {
+                        }, '限制旅游民生消费确认', function () {
                             $me.val(0);
                         })
                 } else {
                     $me.val(0);
                 }
             });
+
+            $('input.amount').change(function () {
+                var amount = Number($(this).val());
+
+                var iType = $(this).attr('mtype');
+                var sel = `div.glimit[data-money-type=${iType}]`;
+                if (amount > 0) {
+                    $(sel).removeClass("hidden");
+                } else {
+                    $(sel).addClass("hidden");
+                }
+            });
             $('#btn-ok').click(function () {
                 var $frm = $(this).closest("form");
-                if ($.html5Validate.isAllpass($frm)) {
-                    layer.load("正在处理...");
-                    console.log($frm.serialize());
-                    $.post(postUrl,
-                        $frm.serialize(),
-                        function (data: IJsonMsg) {
-                            layer.closeAll();
-                            if (data.code)
-                                window.location.href = "/SysVirtualProduct/Index";
-                            else
-                                layer.alert(data.msg, LayerIcon.CryingFace);
-                        });
-                }
+                var frmAjaxOpt = <JQueryFormOptions>{};
+                if (!$.html5Validate.isAllpass($frm)) return;
+                layer.load('正在处理...');
+                frmAjaxOpt.url = postUrl;
+                frmAjaxOpt.beforeSubmit = function (frmData) {
+                    var details: IVP.PConditionInfo[] = [];
+                    let $glimits = $('div.form-group.glimit', $frm);
+                    $.each($glimits, function (i, e) {
+                        let $eachGroup = $(e);
+                        if (!$eachGroup.hasClass("hidden")) {
+                            let d = <IVP.PConditionInfo>{};
+                            let selLimitMode = $eachGroup.find("select.sel-limit-mode").val();
+                            if (selLimitMode != "") {
+                                d.MoneyType = Number($eachGroup.attr("data-money-type"));
+                                d.IsValidDate = (selLimitMode == "period-of-validity-mode");
+                                if (d.IsValidDate) {
+                                    d.StartDate = $eachGroup.find('input[name="PerExpiryDateStart"]').val();
+                                    d.EndDate = $eachGroup.find('input[name="PerExpiryDateEnd"]').val();
+                                    details.push(d);
+                                } else {
+                                    d.AmountLimitTime = Number($eachGroup.find('input[name="PerAmountLimitTime"]').val());
+                                    d.AmountLimitMSTime = Number($eachGroup.find('input[name="PerAmountLimitMSTime"]').val());
+                                    if (d.AmountLimitTime > 0 || d.AmountLimitMSTime > 0)
+                                        details.push(d);
+                                }
+                            }
+                        }
+                    });
+                    frmData.push({ 'name': 'details', value: JSON.stringify(details) });
+                    return true;
+                };
+                frmAjaxOpt.success = function (data: IJsonMsg) {
+                    layer.closeAll();
+                    if (data.code)
+                        window.location.href = "/SysVirtualProduct/Index";
+                    else
+                        layer.alert(data.msg, LayerIcon.CryingFace);
+                };
+                $frm.ajaxSubmit(frmAjaxOpt);
+               
             });
         });
     }

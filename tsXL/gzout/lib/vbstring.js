@@ -14,7 +14,7 @@ define(["require", "exports"], function (require, exports) {
     exports.left = left;
     function mid(s, iPosStart, len) {
         if (iPosStart < 1)
-            throw 'VB Mide iPosStart Must >0';
+            throw 'VB Mid iPosStart Must >0';
         if (len == undefined)
             return s.substring(iPosStart - 1);
         return s.substr(iPosStart - 1, len);

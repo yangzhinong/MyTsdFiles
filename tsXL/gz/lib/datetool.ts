@@ -31,3 +31,18 @@ export function Format(d: Date, fmt: string) {
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 }
+
+export function FormatToDate(d: Date) {
+    return Format(d, "yyyy-MM-dd");
+}
+export function FormatToDateDot(d: Date) {
+    return Format(d, "yyyy.MM.dd");
+}
+
+export function FormatToDateAndMinute(d: Date) {
+    return Format(d, "yyyy.MM.dd HH:mm");
+}
+
+export function FormatToMinute(d: Date) {
+    return Format(d, "HH:mm");
+}

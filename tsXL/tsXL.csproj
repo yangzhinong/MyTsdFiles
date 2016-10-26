@@ -21,6 +21,16 @@
     <Content Include="2.html" />
     <Content Include="app.css" />
     <Content Include="buildToDir.txt" />
+    <Content Include="css\1.css.map">
+      <DependentUpon>1.css</DependentUpon>
+    </Content>
+    <None Include="css\1.scss" />
+    <Content Include="css\1.css">
+      <DependentUpon>1.scss</DependentUpon>
+    </Content>
+    <Content Include="css\1.min.css">
+      <DependentUpon>1.css</DependentUpon>
+    </Content>
     <Content Include="gz\lib\css\fileUploadBeatutify.css" />
     <Content Include="node_modules\moment\ender.js" />
     <Content Include="node_modules\moment\locale\zh-cn.js" />
@@ -247,6 +257,7 @@
     <Content Include="Scripts\bootstrap-dialog.js" />
     <Content Include="Scripts\bootstrap-table.js" />
     <Content Include="Scripts\h5Valid.js" />
+    <Content Include="Scripts\history\history.js" />
     <Content Include="Scripts\jasmine-2.5.2\boot.js" />
     <Content Include="Scripts\jasmine-2.5.2\console.js" />
     <Content Include="Scripts\jasmine-2.5.2\jasmine-html.js" />
@@ -283,6 +294,7 @@
     <Content Include="node_modules\moment\LICENSE" />
     <Content Include="node_modules\moment\package.json" />
     <Content Include="node_modules\moment\README.md" />
+    <Content Include="css\_reset.scss" />
     <None Include="Scripts\jquery-1.4.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.4.js" />
     <Content Include="Scripts\jquery-1.4.4.min.js" />
@@ -337,6 +349,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="gz\2.ts" />
+    <TypeScriptCompile Include="gz\SysActivity.ts" />
     <TypeScriptCompile Include="gz\GToilCardExcelImport.ts" />
     <TypeScriptCompile Include="gz\1.ts" />
     <TypeScriptCompile Include="gz\AccountTransfer.ts" />
@@ -345,6 +358,7 @@
     <TypeScriptCompile Include="gz\faceToFace.ts" />
     <TypeScriptCompile Include="gz\GtoilCardRechargeApply.ts" />
     <TypeScriptCompile Include="gz\lib\datetool.ts" />
+    <TypeScriptCompile Include="gz\lib\dlgPrompt.ts" />
     <TypeScriptCompile Include="gz\lib\fileUploadBeatutify.ts" />
     <TypeScriptCompile Include="gz\lib\loadcss.ts" />
     <TypeScriptCompile Include="gz\lib\oilcardselectdlg.ts" />
@@ -356,6 +370,7 @@
     <TypeScriptCompile Include="gz\shoptx.ts" />
     <TypeScriptCompile Include="gz\orderopeartion.ts" />
     <TypeScriptCompile Include="gz\productop.ts" />
+    <TypeScriptCompile Include="gz\WxRecordLog.ts" />
     <TypeScriptCompile Include="node_modules\moment\moment.d.ts" />
     <TypeScriptCompile Include="Scripts\src\1.ts" />
     <TypeScriptCompile Include="gz\SysSetting.ts" />
@@ -367,6 +382,7 @@
     <TypeScriptCompile Include="typings\bootstrap-dialog\bootstrap-dialog.d.ts" />
     <TypeScriptCompile Include="typings\bootstrap\bootstrap.d.ts" />
     <TypeScriptCompile Include="typings\chosen\chosen.jquery.d.ts" />
+    <TypeScriptCompile Include="typings\history\history.d.ts" />
     <TypeScriptCompile Include="typings\icheck\icheck.d.ts" />
     <TypeScriptCompile Include="typings\jasmine\jasmine.d.ts" />
     <TypeScriptCompile Include="typings\jquery.form\jquery.form.d.ts" />

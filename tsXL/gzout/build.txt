@@ -13,6 +13,9 @@ GToilCardExcelImport.js
 lib/loadcss.js
 lib/fileUploadBeatutify.js
 lib/oilcardselectdlg.js
+lib/dlgPrompt.js
+lib/datetool.js
+GtoilCardRechargeApply.js
 GToilCardExcelImport.js
 
 2.js

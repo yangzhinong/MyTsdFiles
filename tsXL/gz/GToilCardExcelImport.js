@@ -1,5 +1,6 @@
-define(["require", "exports", 'lib/fileUploadBeatutify', 'lib/oilcardselectdlg'], function (require, exports, fileTool, cardSelTool) {
+define(["require", "exports", 'lib/fileUploadBeatutify', 'lib/oilcardselectdlg', 'GtoilCardRechargeApply'], function (require, exports, fileTool, cardSelTool, apply) {
     "use strict";
+    apply.Init();
     $(document).ready(function () {
         $('#btn-import-excel').click(function () {
             var dlg = new BootstrapDialog({

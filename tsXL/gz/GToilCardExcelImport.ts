@@ -1,10 +1,10 @@
 ﻿
 import * as fileTool from 'lib/fileUploadBeatutify';
 import * as cardSelTool from 'lib/oilcardselectdlg';
+import * as apply from 'GtoilCardRechargeApply';
 
+apply.Init();
 $(document).ready(function () {
-
-   
     $('#btn-import-excel').click(function () {
         var dlg = new BootstrapDialog({
             title: '导入石油卡 - Excel方式',
@@ -64,4 +64,5 @@ $(document).ready(function () {
             DlgTitle:'国通石油卡出售'
         });
     });
+    
 });

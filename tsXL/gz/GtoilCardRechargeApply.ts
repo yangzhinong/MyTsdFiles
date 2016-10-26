@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿import * as dlgtool from 'lib/dlgPrompt';
+import * as datetool from 'lib/datetool';
+$(document).ready(function () {
     $('#btn-recharge-apply').click(function () {
         var dlg = new BootstrapDialog({
             draggable: true,
@@ -40,7 +42,6 @@
                     $div.find('#cardnos').text('');
                     $table.bootstrapTable('uncheckAll');
                 });
-
                 $div.find('#btn-ok').click(function () {
                     var $btn = $(this);
                     $btn.enable(false);
@@ -64,12 +65,9 @@
                             } else {
                                 layer.alert(data.msg, LayerIcon.CryingFace);
                             }
-
                         });
-
                     }
                     $btn.enable(true);
-
                 });
                 $table.bootstrapTable({
                     ajax: function (param: BootStrapTable.IAjaxParams) {
@@ -129,8 +127,6 @@
         });
         dlg.realize();
     });
-
-
     $('a.apply-audit').click(function () {
         var $me = $(this);
         var applyId = $me.attr("data-apply-id");
@@ -142,7 +138,6 @@
             applytime: $tr.find('td.applaytime').text(),
             cardnos: $('td.qty',$tr).attr('data-cardnos')
         };
-
         var fbtnOk = function () {
             var $me = $(this);
             $me.enable(false);
@@ -151,8 +146,6 @@
                 $me.enable(true);
                 return;
             }
-
-
             var postData = $frm.serialize() + '&applyid=' + applyId;
             console.log(postData);
             layer.load('正在处理...');
@@ -170,14 +163,12 @@
                 }
             });
         };
-
         var dlg = new BootstrapDialog({
             title: '充值申请审核',
             draggable: true,
             message: function () {
                 var $div = $('<div/>');
                 $div.append($('#tpl-recharge-audit').html());
-
                 $('#btn-cancel', $div).click(function () {
                     dlg.close();
                 });
@@ -187,23 +178,12 @@
                 $div.find('#price').val(applyData.price);
                 $div.find('#lbl-cardnos').text(applyData.qty);
                 $div.find('#cardnos').text(applyData.cardnos);
-
                 dlg.open();
                 return $div;
             }
-
-
-
         });
-
         dlg.realize();
-
-
-
-
-
     });
-
     $('button.btn-manual-recharge').click(function () {
         var $btn = $(this);
         $btn.enable(false);
@@ -224,9 +204,7 @@
                 }
             }
         );
-
     });
-    layer.use('extend/layer.ext.js');
     $('button.btn-send-mail').click(function () {
         var $me = $(this);
         var $tr = $me.closest('tr');
@@ -234,17 +212,15 @@
         var gLogId = $tr.attr("data-id");
         $me.enable(false);
         setTimeout(function () { $me.enable(true); }, 100);
-          
-        layer.prompt({ title: '请输入邮寄信息', type: 3 }, function (val) {
+        dlgtool.Prompt('', '请输入邮寄信息', function ($dlgOkBtn: IBootstrapDialogButtonEx, val: string) {
             $.post("/GTOilCard/SendMail",
                 { weLogNo: weLogNo, gLogId: gLogId, note: val },
                 function (data: IJsonMsg) {
                     if (data.code) {
                         layer.msg(data.msg, 3, LayerIcon.SmillingFace);
                         $me.remove();
-                        var dnow =FormatDate( new Date(),'yyyy.MM.dd HH:mm');
-
-                        let dHtml =`<label class="label label-primary">已寄出</label><br/>${dnow}`
+                        var dnow = datetool.Format (new Date(), 'yyyy.MM.dd HH:mm');
+                        let dHtml = `<label class="label label-primary">已寄出</label><br/>${dnow}`
                         $tr.find('td.issendmail').html(dHtml);
                         $tr.find('td.mailremark').html(val);
                     } else {
@@ -252,32 +228,9 @@
                     }
                 });
         });
-      
-        
     });
-
-
-    // 对Date的扩展，将 Date 转化为指定格式的String
-    // 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符， 
-    // 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字) 
-    // 例子： 
-    // (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423 
-    // (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18 
-     function FormatDate(d: Date, fmt: string) {
-        fmt = fmt.replace('HH', 'hh');
-        //fmt = fmt.replace('DD', 'dd');
-        var o = {
-            "M+": d.getMonth() + 1, //月份 
-            "d+": d.getDate(), //日 
-            "h+": d.getHours(), //小时 
-            "m+": d.getMinutes(), //分 
-            "s+": d.getSeconds(), //秒 
-            "q+": Math.floor((d.getMonth() + 3) / 3), //季度 
-            "S": d.getMilliseconds() //毫秒 
-        };
-        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (d.getFullYear() + "").substr(4 - RegExp.$1.length));
-        for (var k in o)
-            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-        return fmt;
-    }
 });
+
+export function Init() {
+
+}

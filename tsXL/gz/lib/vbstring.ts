@@ -7,7 +7,7 @@ export function left(s: string, len: number) {
     return s.substr(0, len);
 }
 export function mid(s: string, iPosStart: number, len?: number) {
-    if (iPosStart < 1) throw 'VB Mide iPosStart Must >0';
+    if (iPosStart < 1) throw 'VB Mid iPosStart Must >0';
     if (len == undefined) return s.substring(iPosStart - 1);
     return s.substr(iPosStart - 1, len);
 }

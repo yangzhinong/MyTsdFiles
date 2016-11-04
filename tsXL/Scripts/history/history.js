@@ -509,7 +509,7 @@ if (typeof JSON !== 'object') {
         /**
 		 * History.Adapter.bind(el,event,callback)
 		 * @param {Element|string} el
-		 * @param {string} event - custom and standard events
+		 * @param {string} event - custom and standard events  //statechange
 		 * @param {function} callback
 		 * @return {void}
 		 */

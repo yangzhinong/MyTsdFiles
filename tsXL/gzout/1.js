@@ -1,25 +1,13 @@
-var dlg = new BootstrapDialog({
-    title: '请输入邮寄信息',
-    draggable: true,
-    message: function () {
-        var $div = $('<div/>');
-        $div.append('<textarea  style="height:150px;" id="x-val"></textarea>');
-        return $div;
-    },
-    buttons: [
-        {
-            label: '确定',
-            action: function () {
-                var $btn = this;
-                $btn.enable(false);
-            }
-        },
-        {
-            label: '取消',
-            action: function () {
-                var $btn = this;
-                $btn.dialog.close();
-            }
-        }
-    ]
+var hjs = History;
+var x = ['', { dd: 5 }, 4];
+_.filter(x, function (e, k) {
 });
+function tests() {
+    if (!hjs.enabled)
+        return false;
+    hjs.Adapter.bind(window, 'staechange', function () {
+        var state = hjs.getState();
+        hjs.log(state.data, state.title, state.url);
+    });
+    hjs.pushState({ s: 1 }, '', "?state=1");
+}

@@ -54,6 +54,44 @@ class VP {
             });
             
             InitImgPopover();
+
+            //关联路线详情
+            $('#tablelist a.btn-opendlg-lineids').click(function () {
+                layer.load("正在加载...");
+                var $tr = $(this).closest('tr');
+                var name = $tr.find(".name").text();
+                var dlg = new BootstrapDialog({
+                    draggable: true,
+                    closeByBackdrop: false,
+                    title: '套餐[' + name + ']-关联线路详情',
+                    buttons: [{
+                        label: '关闭',
+                        action: function () {
+                            dlg.close();
+                        }
+                    }],
+                    message: function () {
+                        var $div = $('<div></div>');
+                        $.post('/SysVirtualProduct/GetLineIdsDetails', { id: Number($tr.attr("data-id")) }, function (data:IJsonMsg) {
+                            layer.closeAll();
+                            if (data.code) {
+                                $div.html($('#dlg-lineids-details').render({ titles: $.parseJSON(data.data) }));
+                                dlg.open();
+                            } else {
+                                dlg.close();
+                                layer.msg('错误,请稍后再试!', LayerIcon.CryingFace);
+                            }
+                           
+                        });
+                        return $div;
+                    }
+                   
+                });
+
+                dlg.realize();
+
+            });
+            //银币详情
             $('#tablelist a.amount-shop').click(function () {
                 layer.load("正在加载...");
                 var $tr = $(this).closest('tr');
@@ -208,6 +246,96 @@ class VP {
                 } else {
                     $(sel).addClass("hidden");
                 }
+            });
+
+            //点关联线路
+            $('#btn-sel-lines').click(function () {
+                function InitSel($table:JQuery) {
+                    var oldSels: string = $('#lineIds').val();
+
+                    if (oldSels != "") {
+                        var iOldSels = $.map(oldSels.split(","), function (e) {
+                            return Number(e);
+                        });
+
+                        $table.bootstrapTable('checkBy', {
+                            field: 'Id', values: iOldSels
+                        });
+                    }
+                }
+                var oldDlg = $(this).data('dlg');
+                var txt = $(this).closest('.input-group').find('input');
+                if (!oldDlg) {
+                    layer.load("正在加载");
+                    var dlg = new BootstrapDialog({
+                        autodestroy: false,
+                        draggable: true,
+                        closeByBackdrop:false,
+                        title: '请选择关联的线路',
+                        message: function () {
+                            var $div = $('<div/>');
+                            $.post('/SysVirtualProduct/GetLines', {}, function (data: IJsonMsg) {
+                                if (data.code) {
+                                    $div.append($('#tpl-sel-lines').html());
+
+                                    var $table = $div.find('table');
+
+                                    $table.bootstrapTable({
+                                        data: $.parseJSON(data.data),
+                                    });
+                                    InitSel($table);
+                                }
+                            });
+                            layer.closeAll();
+                            dlg.open();
+                            return $div;
+                        },
+                        onshown: function () {
+                            var $table = dlg.$modalBody.find('table');
+                            $table.bootstrapTable('resetView');
+                        },
+                        buttons: [{
+                            label: '确定',
+                            cssClass: 'btn btn-primary',
+                            action: function () {
+                                var $table = dlg.$modalBody.find('table');
+                                var sels = $table.bootstrapTable('getAllSelections');
+                                console.log(sels);
+
+                                if (sels.length > 30) {
+                                    layer.msg("最多只能选择30条线路,请减少选择数量!", 3, LayerIcon.CryingFace);
+                                    return;
+                                }
+
+                                $('#lineIds').val($.map(sels, function (e) { return e.Id;}).join(","));
+                                txt.val($.map(sels, function (e) {
+                                            return e.Title;
+                                        }).join(" , ")
+                                );
+                                dlg.close();
+                            }
+                        },
+                            {
+                                label: '取消',
+                                action: function () {
+                                    var $table = dlg.$modalBody.find('table');
+                                    $table.bootstrapTable('uncheckAll');
+                                    InitSel($table);
+                                    dlg.close();
+                                }
+                            }
+                        ]
+                    });
+                    dlg.realize();
+
+                    $(this).data('dlg', dlg);
+
+                } else {
+                    oldDlg.open();
+                }
+
+
+
             });
             $('#btn-ok').click(function () {
                 var $frm = $(this).closest("form");

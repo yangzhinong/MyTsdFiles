@@ -264,6 +264,19 @@
     <Content Include="Scripts\jasmine-2.5.2\jasmine.css" />
     <Content Include="Scripts\jasmine-2.5.2\jasmine.js" />
     <Content Include="Scripts\jasmine-2.5.2\jasmine_favicon.png" />
+    <Content Include="Scripts\jquery.fileupload\cors\jquery.postmessage-transport.js" />
+    <Content Include="Scripts\jquery.fileupload\cors\jquery.xdr-transport.js" />
+    <Content Include="Scripts\jquery.fileupload\jquery.fileupload-angular.js" />
+    <Content Include="Scripts\jquery.fileupload\jquery.fileupload-audio.js" />
+    <Content Include="Scripts\jquery.fileupload\jquery.fileupload-image.js" />
+    <Content Include="Scripts\jquery.fileupload\jquery.fileupload-jquery-ui.js" />
+    <Content Include="Scripts\jquery.fileupload\jquery.fileupload-process.js" />
+    <Content Include="Scripts\jquery.fileupload\jquery.fileupload-ui.js" />
+    <Content Include="Scripts\jquery.fileupload\jquery.fileupload-validate.js" />
+    <Content Include="Scripts\jquery.fileupload\jquery.fileupload-video.js" />
+    <Content Include="Scripts\jquery.fileupload\jquery.fileupload.js" />
+    <Content Include="Scripts\jquery.fileupload\jquery.iframe-transport.js" />
+    <Content Include="Scripts\jquery.fileupload\vendor\jquery.ui.widget.js" />
     <Content Include="Scripts\jquery.form.js" />
     <Content Include="Scripts\lodash\lodash.core.js" />
     <Content Include="Scripts\lodash\lodash.core.min.js" />
@@ -385,6 +398,7 @@
     <TypeScriptCompile Include="typings\history\history.d.ts" />
     <TypeScriptCompile Include="typings\icheck\icheck.d.ts" />
     <TypeScriptCompile Include="typings\jasmine\jasmine.d.ts" />
+    <TypeScriptCompile Include="typings\jquery.fileupload\jquery.fileupload.d.ts" />
     <TypeScriptCompile Include="typings\jquery.form\jquery.form.d.ts" />
     <TypeScriptCompile Include="typings\jquery.validation\jquery.validation.d.ts" />
     <TypeScriptCompile Include="typings\jquery\jquery.d.ts" />

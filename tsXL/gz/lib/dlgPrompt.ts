@@ -1,5 +1,8 @@
-﻿export function Prompt(initValue: string, title:string, FnOK: (btn: IBootstrapDialogButtonEx, value:string)=>void) {
-    var dlg= new BootstrapDialog({
+﻿
+import * as bd from "bootstrap-dialog";
+
+export function Prompt(initValue: string, title: string, FnOK: (btn: IBootstrapDialogButtonEx, value: string) => void) {
+    var dlg= new bd({
         title: title,
         draggable: true,
         closeByBackdrop: false,

@@ -52,7 +52,7 @@ $('#table').bootstrapTable({
 });
 
 $('dfaf').bootstrapTable<any>({
-
+    
    
 });
 

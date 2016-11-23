@@ -361,6 +361,7 @@
     <Content Include="build.bat" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="config.ts" />
     <TypeScriptCompile Include="gz\2.ts" />
     <TypeScriptCompile Include="gz\lib\ImgUploadCompent.ts" />
     <TypeScriptCompile Include="gz\SysActivity.ts" />

@@ -1,5 +1,7 @@
-﻿import * as dlgTool from 'lib/dlgPrompt';
+﻿
+import * as dlgTool from 'lib/dlgPrompt';
 import * as dateTool from 'lib/datetool';
+
 
 
 $(document).ready(function () {

@@ -2,6 +2,9 @@
 
 
 declare var BootstrapDialog: IBootstrapDialog;
+declare module "bootstrap-dialog" {
+    export = BootstrapDialog;
+}
 interface IBootstrapDialog {
     new (options?: IBootstrapDialogOptions): IBootstrapDialogInstance;
       /** For text localization. */
@@ -168,3 +171,4 @@ interface IBootstrapDialogButtonEx extends JQuery {
     toggleSpin(spin?:boolean): IBootstrapDialogButtonEx;
 
 }
+

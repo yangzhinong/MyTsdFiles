@@ -142,5 +142,3 @@ interface JQueryStatic {
     layer(ops:ILayerPromptOptions): number;
 }
 
-
-

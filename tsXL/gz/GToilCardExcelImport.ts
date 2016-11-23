@@ -3,6 +3,7 @@ import * as fileTool from 'lib/fileUploadBeatutify';
 import * as cardSelTool from 'lib/oilcardselectdlg';
 import * as apply from 'GtoilCardRechargeApply';
 
+
 apply.Init();
 $(document).ready(function () {
     $('#btn-import-excel').click(function () {

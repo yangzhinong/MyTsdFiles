@@ -5,7 +5,7 @@
         closeByBackdrop: false,
         message: function () {
             var $div = $('<div/>');
-            $div.append('<textarea  style="height:100px;" id="x-val"></textarea>');
+            $div.append('<textarea  style="height:100px;"  class="form-control" id="x-val"></textarea>');
             $div.find('#x-val').val(initValue);
             return $div;
         },

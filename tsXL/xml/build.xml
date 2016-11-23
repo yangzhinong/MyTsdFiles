@@ -7,7 +7,7 @@
     
     <copy flatten="false" todir="D:/work/公众国际业务操作系统/GongZhong/js/gz">
       <fileset basedir="e:/gz">
-        <include name="*.js"/>
+        <include name="**/*.js"/>
       </fileset>
     </copy>
 

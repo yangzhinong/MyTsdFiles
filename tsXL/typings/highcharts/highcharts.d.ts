@@ -1785,10 +1785,10 @@ declare namespace __Highcharts {
         style?: CSSObject;
         /**
          * The default series type for the chart. Can be any of the chart types listed under plotOptions.
-         * @default 'line'
+         * @default 'line'  'linear' 'datetime' 'category'
          * @since 2.1.0
          */
-        type?: string;
+        type?: string; 
         /**
          * An explicit width for the chart. By default the width is calculated from the offset width of the containing
          * element.

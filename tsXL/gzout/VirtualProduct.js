@@ -283,6 +283,11 @@ var VP = (function () {
                 var frmAjaxOpt = {};
                 if (!$.html5Validate.isAllpass($frm))
                     return;
+                var $SaleChannelType = $('select[name="SaleChannelType"]', $frm);
+                if ($SaleChannelType.val() < 0) {
+                    $SaleChannelType.testRemind("请至少选择一个销售渠道类型!");
+                    return;
+                }
                 layer.load('正在处理...');
                 frmAjaxOpt.url = postUrl;
                 frmAjaxOpt.beforeSubmit = function (frmData) {

@@ -53,6 +53,15 @@ $(document).ready(function () {
                             $btn.enable(true);
                             return;
                         }
+                        var $moneyType = $('select[name="MoneyType"]', $frm);
+                        if ($moneyType.val() < 0) {
+                            $moneyType.testRemind("请选择一个币种!");
+                            $moneyType.focus();
+                            $btn.enable(true);
+                            return;
+                        }
+
+                        
                         layer.load('正在处理...');
                         $.post('/GTOilCard/RechargeApply', $frm.serialize(), function (data: IJsonMsg) {
                             $btn.enable(true);
@@ -136,7 +145,8 @@ $(document).ready(function () {
             price: $tr.find('td.price').text(),
             qty: $me.attr('data-apply-qty'),
             applytime: $tr.find('td.applaytime').text(),
-            cardnos: $('td.qty',$tr).attr('data-cardnos')
+            cardnos: $('td.qty', $tr).attr('data-cardnos'),
+            moneytype: $('td.moneytype', $tr).text()
         };
         var fbtnOk = function () {
             var $me = $(this);
@@ -178,6 +188,7 @@ $(document).ready(function () {
                 $div.find('#price').val(applyData.price);
                 $div.find('#lbl-cardnos').text(applyData.qty);
                 $div.find('#cardnos').text(applyData.cardnos);
+                $div.find("#moneytype").text(applyData.moneytype);
                 dlg.open();
                 return $div;
             }

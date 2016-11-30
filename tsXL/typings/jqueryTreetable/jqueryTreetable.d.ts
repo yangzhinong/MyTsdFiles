@@ -184,6 +184,7 @@ declare namespace TreeTable {
          **/
          tree: any;
          nodes: INode[];
+         roots: INode[];
 
          
     }

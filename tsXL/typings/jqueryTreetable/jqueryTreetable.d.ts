@@ -124,7 +124,7 @@ declare namespace TreeTable {
         /**
          * 
          * @param row   //$row
-         * @param tree  //这个对象属性里装的是Nodes  var node= <TreeTable.INode> tree[node.id]
+         * @param tree  //这个对象属性里装的是Node  var node= <TreeTable.INode> tree[node.id]
          * @param setting  
          */
         constructor(row: JQuery, tree:any, setting: ISetting)
@@ -150,7 +150,7 @@ declare namespace TreeTable {
         **/
         row: JQuery;
         /**
-            这个对象属性里装的是Nodes
+            这个对象属性里装的是Node
            var node= <TreeTable.INode> tree[node.id]
          **/
         tree: any;

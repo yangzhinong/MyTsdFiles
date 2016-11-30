@@ -1,6 +1,7 @@
 ﻿/// <reference path="loadimg.ts" />
 
 
+
 const enum ViewType {
     Index=0,
     Create = 1,
@@ -151,7 +152,8 @@ class VP {
     }
     private DocCreateOrEditReady(vt:ViewType) {
         $(document).ready(function(){
-            yznInitUploadImgs('virtualproduct', ['Logo']);
+            //yznInitUploadImgs('virtualproduct', ['Logo']);
+            GZIMG.ImgUploadCompent($('#Logo'), 'public/virtualproduct')
             var postUrl = "";
             switch (vt) {
                 case ViewType.Create:

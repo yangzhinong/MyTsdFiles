@@ -23,7 +23,7 @@
  */
 
 namespace GZIMG {
-   export  function ImgUploadCompent($txts: JQuery, paths: string, fcbReponse: () => void) {
+   export  function ImgUploadCompent($txts: JQuery, paths: string, fcbReponse?: () => void) {
         var applicationPath = window.applicationPath === "" ? "" : window.applicationPath || "../../";
         var imgserver = 'http://img.gzgjly.com';
         var imgservice = 'http://img.gzgjly.com/UploadFiles.ashx';

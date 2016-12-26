@@ -1,7 +1,7 @@
 require.config({
     ////appDir: "/js/gz/",
     // baseUrl: './',
-    urlArgs: 'v=20161123',
+    urlArgs: 'v=20161220',
     paths: {
         "bootstrap-dialog": "../bootstrap-dialog",
         jquery: '../jquery-1.8.2.min',

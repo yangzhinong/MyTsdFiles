@@ -31,6 +31,8 @@ interface JQuery {
     treetable(cmd: 'collapseNode' | 'expandNode' |'node' | 'removeNode' | 'reveal',
         id: string | number):any;
     treetable(cmd: 'sortBranch' | 'unloadBranch', node: TreeTable.INode);
+    treetable(cmd: string, nodeId: string, destId: string)
+    treetable(cmd: 'move', nodeId: string, destId: string);
     //treetable(cmd: 'loadBranch', node: TreeTable.INode, row: any);
     //treetable(cmd: 'sortBranch', node: TreeTable.INode, columnOrFunction: number | Function);
 
@@ -156,6 +158,8 @@ declare namespace TreeTable {
         tree: any;
         settings: ISetting;
         id: string;
+
+        children: INode[];
        
 
 
@@ -172,7 +176,6 @@ declare namespace TreeTable {
          render();
          sortBranch(node: INode, sortFund: any);
          unloadBranch(node: INode);
-
          /**
          树关联的$table
          **/

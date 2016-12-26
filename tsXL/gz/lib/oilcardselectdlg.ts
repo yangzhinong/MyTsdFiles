@@ -130,8 +130,13 @@ export function SelectGtOilCardToOperate(opt: ISelectGtOilCardToOperate) {
         },
         onshown: function () {
             var $table = dlg.$modalBody.find('table');
+            
             $table.bootstrapTable('resetView');
+        },
+        onshow: function () {
+            $(document.body).addClass('modal-open');
         }
+        
     });
     dlg.realize();
 }

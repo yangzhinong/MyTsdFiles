@@ -132,6 +132,9 @@ $(document).ready(function () {
             onshown: function () {
                 var $table = dlg.$modalBody.find('table');
                 $table.bootstrapTable('resetView');
+            },
+            onshow: function () {
+                $(document.body).addClass('modal-open');
             }
         });
         dlg.realize();

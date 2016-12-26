@@ -114,7 +114,8 @@ var VP = (function () {
     };
     VP.prototype.DocCreateOrEditReady = function (vt) {
         $(document).ready(function () {
-            yznInitUploadImgs('virtualproduct', ['Logo']);
+            //yznInitUploadImgs('virtualproduct', ['Logo']);
+            GZIMG.ImgUploadCompent($('#Logo'), 'public/virtualproduct');
             var postUrl = "";
             switch (vt) {
                 case 1 /* Create */:

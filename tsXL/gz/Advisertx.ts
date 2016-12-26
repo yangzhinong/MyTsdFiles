@@ -1,12 +1,18 @@
 ﻿$(document).ready(function () {
     $("#btn-cash").click(function () {
+        var bMobile = false;
 
+        var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 
-       
+        if (w < 700) bMobile = true;
+
+        if (w > 800) w = 600;
+
         $.layer({
             title: '提现',
             type: LayerType.PageLayer,
-            area:['600px','300px'],
+            area:[ w.toString()+ 'px','300px'],
             maxmin: false,
             shadeClose: false,
             page: {
@@ -19,6 +25,13 @@
             success: function (d) {
                 console.log('opened');
                 console.log(d);
+
+                if (bMobile) {
+                    $('.xubox_layer').css({ "top": '5px' });
+                    $(document.body).addClass("modal-open");
+
+                    $('.container', d).css({ "width": (w - 10).toString() + 'px' });
+                }
                 $('#btn-ok', d).click(function () {
                     
                     console.log('you press ok button');

@@ -1,23 +1,51 @@
 ﻿
-declare module Kalendae {
+declare namespace Kalendae {
     function moment(unixTimestamp?: number): moment.Moment;
     function moment(aspnetTime?: string); //moment("/Date(1198908717056-0700)/");
     function moment(m?: moment.Moment);
 
     function moment(d?: Date): moment.Moment;
     function moment(sDateTime?: string, sFormat?: string, exactly?: boolean): moment.Moment;
+
+    class Input {
+        constructor(targetE: HTMLElement, opt?: KalendateInitOption)
+    } 
+
+    module util {
+        function addEvent(el: string | HTMLElement, eventname: string, cb: (event, target) => void);
+        function isIE8(): boolean;
+        function $(elem): HTMLDocument;
+        function $$(selector): HTMLDocument;
+        function make(tagName: string, attributes: Object, attach:HTMLDocument):HTMLDocument;
+        function isVisible(elem): boolean;
+        function removeEvent(el: string | HTMLElement, event: string, listener);
+        function fireEvent(el: string | HTMLElement, event: string);
+        function hasClassName(el: string | HTMLElement, className: string): boolean;
+        function isFixed(el: HTMLElement): boolean;
+        function scrollContainer(el: HTMLDocument);  //查找该元素的第一个可滚动的容器,返回值就是el参数;
+        function getPosition(el: HTMLDocument, isInner: boolean): any; //返回{"0":x, "1":y}
+        function getHeight(el: HTMLDocument);//返回回可滚动的高度值
+        function getWidth(el: HTMLDocument);
+        function trimString(s: string): string;
+        function isArray(array: any): boolean;
+
+
+        
+    }
 }
+
 
 type KalendateInput= string | Date | moment.Moment | string[] | Date[] | moment.Moment[];
 
 
 declare class Kalendae {
 
-    constructor(id: string, opt?: KalendateInitOption)
+    constructor(id: string| HTMLElement, opt?: KalendateInitOption)
     addSelected: (input: KalendateInput, draw?: any) => void;
     getSelected: (format?: string) => string;
     getSelectedAsDates: () => Date[];
     getSelectedAsText: (format?: string) => string[];
+    blackout: (d?: any) => boolean;   //判断某个日期是不是不能选择的日期,由初始化选项的blackout决定.
     classes: KaledateCassMap;
     calendars: {caption:any,days:any[]}[];
     container: Element;

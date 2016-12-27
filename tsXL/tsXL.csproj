@@ -365,6 +365,7 @@
     <TypeScriptCompile Include="config.ts" />
     <TypeScriptCompile Include="gz\2.ts" />
     <TypeScriptCompile Include="gz\CardCzXfYe.ts" />
+    <TypeScriptCompile Include="gz\lib\GZDateSelect.ts" />
     <TypeScriptCompile Include="gz\lib\gzmap.ts" />
     <TypeScriptCompile Include="gz\lib\ImgUploadCompent.ts" />
     <TypeScriptCompile Include="gz\SysActivity.ts" />

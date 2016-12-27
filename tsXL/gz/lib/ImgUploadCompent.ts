@@ -148,5 +148,50 @@ namespace GZIMG {
                 });
             }
         }
-    }
+   }
+
+  export function InitMutiImgUpLoadButton2($btns: JQuery, typeId: number, opt?: { guid?: string, paths?: string }) {
+
+      for (var i = 0; i < $btns.length; i++) {
+          var $btn = $btns.eq(i);
+          let opt1 = $.extend({}, { Id: 0, paths: 'public/product' }, opt);
+          //debugger;
+          opt1.guid = opt1.guid || $btn.attr("data-guid");
+          //debugger;
+          aBtnInit($btn, opt1);
+      }
+      function aBtnInit($btn: JQuery, opt: { guid?: number, paths?: string }) {
+          if (!$btn.data("img-pick-inited")) {
+              $btn.on("click", function () {
+                  var $me = $(this);
+                  var load = layer.load("请稍后...", 3);
+                  var sname = $(this).attr("sname");
+                  var url = "/Home/_ProductImagePartialGuid?type=" + typeId + "&guid=" + opt.guid;
+                  $.post(url, { type: typeId, paths: opt.paths }, function (msg) {
+                      layer.close(load);
+                      $.layer({
+                          type: 1,
+                          title: sname + "-图片列表",
+                          maxmin: false,
+                          area: ['800px', '600px'],
+                          shift: 'left',
+                          page: {
+                              html: msg
+                          },
+                          end: function () {
+                              var iCount = $('body').eq(0).data("father-images-count");
+                              var $imgCount = $me.find("span");
+                              if ($imgCount.length > 0) {
+                                  $imgCount.html(' ' + iCount + ' 张');
+                              }
+                              else {
+                                  $me.append('<span>' + iCount + " 张</span>");
+                              }
+                          }
+                      });
+                  });
+              });
+          }
+      }
+  }
 }

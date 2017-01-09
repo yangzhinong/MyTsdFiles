@@ -1,24 +1,13 @@
 $(document).ready(function () {
     $("#btn-cash").click(function () {
-        $.layer({
+        var dlg = new BootstrapDialog({
             title: '提现',
-            type: 1 /* PageLayer */,
-            area: ['600px', '300px'],
-            maxmin: false,
-            shadeClose: false,
-            page: {
-                html: $('#tx-template').html()
-            },
-            shift: 'left',
-            //fadeIn: 300,
-            zIndex: 1000,
-            success: function (d) {
-                console.log('opened');
-                console.log(d);
-                $('#btn-ok', d).click(function () {
-                    console.log('you press ok button');
+            message: function () {
+                var $div = $('<div/>');
+                $div.append($('#tx-template').html());
+                var $frm = $div.find("form");
+                $('#btn-ok', $frm).click(function () {
                     var $me = $(this);
-                    var $frm = $me.closest("form");
                     if ($.html5Validate.isAllpass($frm)) {
                         $me.prop('disabled', true);
                         var load = layer.load("正在处理...");
@@ -39,7 +28,7 @@ $(document).ready(function () {
                     }
                     ;
                 });
-                $("#getpaycode", d).click(function () {
+                $("#getpaycode", $frm).click(function () {
                     var $me = $(this);
                     var forgetTime = (function ($d, seconds) {
                         var countdown = seconds;
@@ -87,35 +76,10 @@ $(document).ready(function () {
                     }
                     sendVCode();
                 });
+                dlg.open();
+                return $div;
             }
         });
-        function old() {
-            var bankmsg = "是否确认提现，银行卡信息：<br/>银行名称：@bank.BankTitle<br/>卡号：@bank.CardNumber<br/>户名：@bank.CardName";
-            layer.confirm(bankmsg, function (b) {
-                var GtzMoeny = $("input[name='GtzMoeny']").val();
-                if (GtzMoeny == '' || parseFloat(GtzMoeny) <= 0) {
-                    layer.msg("请输入正确的金额！", 1, 8);
-                    return;
-                }
-                var load = layer.load("提交中...", 10);
-                $.ajax({
-                    type: "POST",
-                    contentType: "application/json",
-                    url: "/settle/submitcash/",
-                    data: "{'GtzMoeny':" + GtzMoeny + "}",
-                    dataType: 'json',
-                    success: function (json) {
-                        layer.close(load);
-                        if (json.state == 1) {
-                            layer.msg(json.msg, 1, 9);
-                            window.location.href = window.location.pathname;
-                        }
-                        else {
-                            layer.msg(json.msg, 1, 8);
-                        }
-                    }
-                });
-            });
-        }
+        dlg.realize();
     });
 });

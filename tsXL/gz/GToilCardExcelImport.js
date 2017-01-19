@@ -1,4 +1,4 @@
-define(["require", "exports", 'lib/fileUploadBeatutify', 'lib/oilcardselectdlg', 'GtoilCardRechargeApply'], function (require, exports, fileTool, cardSelTool, apply) {
+define(["require", "exports", "lib/fileUploadBeatutify", "lib/oilcardselectdlg", "GtoilCardRechargeApply"], function (require, exports, fileTool, cardSelTool, apply) {
     "use strict";
     apply.Init();
     $(document).ready(function () {

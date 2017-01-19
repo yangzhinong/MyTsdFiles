@@ -1,4 +1,4 @@
-define(["require", "exports", 'test/src/add', '../../gz/lib/datetool'], function (require, exports, tool, dTool) {
+define(["require", "exports", "test/src/add", "../../gz/lib/datetool"], function (require, exports, tool, dTool) {
     "use strict";
     describe("A suite", function () {
         var f;

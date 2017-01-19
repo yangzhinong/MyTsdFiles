@@ -1,4 +1,4 @@
-define(["require", "exports", 'lib/loadcss'], function (require, exports, cssTool) {
+define(["require", "exports", "lib/loadcss"], function (require, exports, cssTool) {
     "use strict";
     cssTool.loadCss('lib/css/fileUploadBeatutify.css');
     function initFileBtn($inputs, uploadBtnText) {

@@ -10,7 +10,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
-    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -439,6 +439,7 @@
     <TypeScriptCompile Include="typings\yzn\jsonMsg.d.ts" />
     <TypeScriptCompile Include="typings\yzn\layer.d.ts" />
     <TypeScriptCompile Include="typings\yzn\windows.d.ts" />
+    <TypeScriptCompile Include="v21\newFun.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jqueryvalidation1.15\additional-methods.min.js.map" />

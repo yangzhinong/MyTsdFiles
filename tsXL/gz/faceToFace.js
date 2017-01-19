@@ -1,4 +1,4 @@
-define(["require", "exports", 'lib/sentvcodebutton'], function (require, exports, tool) {
+define(["require", "exports", "lib/sentvcodebutton"], function (require, exports, tool) {
     "use strict";
     $(document).ready(function () {
         //产品分类下拉框

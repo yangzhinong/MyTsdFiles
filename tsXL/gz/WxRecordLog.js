@@ -1,4 +1,4 @@
-define(["require", "exports", 'lib/dlgPrompt', 'lib/datetool'], function (require, exports, dlgTool, dateTool) {
+define(["require", "exports", "lib/dlgPrompt", "lib/datetool"], function (require, exports, dlgTool, dateTool) {
     "use strict";
     $(document).ready(function () {
         $('button.btn-send-mail').click(function () {

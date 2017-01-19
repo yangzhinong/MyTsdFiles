@@ -1,4 +1,4 @@
-define(["require", "exports", 'lib/dlgPrompt', 'lib/datetool'], function (require, exports, dlgtool, datetool) {
+define(["require", "exports", "lib/dlgPrompt", "lib/datetool"], function (require, exports, dlgtool, datetool) {
     "use strict";
     $(document).ready(function () {
         $('#btn-recharge-apply').click(function () {

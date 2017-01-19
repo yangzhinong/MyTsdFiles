@@ -18,7 +18,8 @@ $(document).ready(function () {
                         $btn.disable();
                         var newValue = dlg.$modalBody.find("#value").val();
                         $.post("/SysSetting/SaveNewValue", {
-                            id: id, value: newValue }, function (data) {
+                            id: id, value: newValue
+                        }, function (data) {
                             if (data.code) {
                                 layer.alert(data.msg, 9 /* SmillingFace */, function () {
                                     $tr.find("td.value").text(newValue + InputGroupAddon);

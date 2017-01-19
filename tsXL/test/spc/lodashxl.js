@@ -41,8 +41,8 @@ describe('lodash learn ', function () {
             return c > 'b';
         }));
         {
-            var x = { a: 1, b: 2, c: 3 };
-            console.log(_.filter(x, function (o) {
+            var x_1 = { a: 1, b: 2, c: 3 };
+            console.log(_.filter(x_1, function (o) {
                 return o > 1;
             }));
             console.log(_.filter('hello', function (c) {

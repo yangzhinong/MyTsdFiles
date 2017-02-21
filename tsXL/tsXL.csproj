@@ -297,6 +297,7 @@
     <Content Include="Scripts\requirejs\example.build.js" />
     <Content Include="Scripts\treetable\jquery.treetable.js" />
     <Content Include="Scripts\yzn\rconfig.js" />
+    <Content Include="v21\ed.js" />
     <Content Include="xml\build.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -366,6 +367,7 @@
     <TypeScriptCompile Include="gz\2.ts" />
     <TypeScriptCompile Include="gz\CardCzXfYe.ts" />
     <TypeScriptCompile Include="gz\DistributorCash.ts" />
+    <TypeScriptCompile Include="gz\IdCardImport.ts" />
     <TypeScriptCompile Include="gz\lib\GZDateSelect.ts" />
     <TypeScriptCompile Include="gz\lib\gzmap.ts" />
     <TypeScriptCompile Include="gz\lib\ImgUploadCompent.ts" />

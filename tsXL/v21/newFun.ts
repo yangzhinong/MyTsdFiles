@@ -1,20 +1,45 @@
-﻿interface Person {
-    name: string;
-    age: number;
-    location: string;
+﻿import "./ed.js";
+
+declare var x: number;
+
+var y = 10;
+console.log(x);
+
+function isNumber(x: any): x is number {
+    return typeof x === 'number';
 }
 
-type K1 = keyof Person;
+
+class Fish {
+    swim() {
+        console.log('swim');
+    }
+}
+
+class Bird {
+    fly() {
+        console.log('fly');
+    }
+}
+
+function isFish(pet: Fish | Bird): pet is Fish {
+
+    return (<Fish>pet).swim !== undefined;
+
+}
+
+var oPet = <Bird>{};
+
+function test(pet: Fish | Bird) {
+    if (isFish(pet)) {
+        pet.swim();
+    }
+    else {
+        pet.fly();
+    }
+}
 
 
-
-let x = () => 42;
-
-let y = x();
-
-console.log(x() + y());
-
-const c1 = "hello";
-
+type Easing = "ease-in" | "ease-out" | "ease-in-out";
 
 

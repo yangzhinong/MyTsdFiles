@@ -19,4 +19,4 @@ del e:\gz\2.js
 del e:\gz\*test*.js 
 del e:\gz\lib\*test*.js
 
-xcopy e:\gz  D:\work\公众国际业务操作系统\GongZhong\js\gz /s/e/y
+xcopy e:\gz  D:\work4\公众国际业务操作系统\GongZhong\js\gz /s/e/y

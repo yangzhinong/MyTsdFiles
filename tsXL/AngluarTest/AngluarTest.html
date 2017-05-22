@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Angluar Test</title>
+
+
+    <script src="../lib/angular1.5.8.js"></script>
+    <script src="yznAngluarTest.js"></script>
+</head>
+<body ng-app="myModule">
+    <h2>Angluar Test</h2>
+    <div ng-controller="myController">
+        <input type="text" ng-model="message" />
+        {{ message }}
+        <div>
+            First Name: {{ employee.firstName }} <br/>
+            Last Name : {{ employee.lastName }}
+        </div>
+        <div>
+            Name={{ country.name}}
+            <img ng-src="{{ country.flag }}" alt="{{country.name + ' Flag'}}" style="height:100px; width:100px;" />
+        </div>
+    </div>
+
+    <div>
+        10 + 20 = {{ 10 + 20 }}
+    </div>
+</body>
+</html>

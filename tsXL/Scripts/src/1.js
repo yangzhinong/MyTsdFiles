@@ -38,4 +38,3 @@ setTimeout(function () {
 }, 300);
 var MakePoint;
 var oo = MakePoint();
-//# sourceMappingURL=1.js.map

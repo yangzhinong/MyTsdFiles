@@ -117,4 +117,3 @@ $(document).ready(function () {
         dlg.realize();
     }
 });
-//# sourceMappingURL=AccountTransfer.js.map

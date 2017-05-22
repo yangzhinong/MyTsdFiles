@@ -6,7 +6,7 @@
 
 declare var shops: string;  //全局变量
 
-class VP {
+class VirtualProduct {
     public  IndexInit() {
         $(document).ready(function () {
             function InitImgPopover() {
@@ -106,4 +106,8 @@ class VP {
     }
   
 }
+
+
+export {VirtualProduct};
+
 

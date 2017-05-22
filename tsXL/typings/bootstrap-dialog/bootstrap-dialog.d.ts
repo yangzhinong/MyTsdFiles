@@ -21,6 +21,7 @@ interface IBootstrapDialog {
     confirm(message: string, closeCallback ?: (result: boolean) => void): void;
     confirm(options: IBootstrapDialogOptions): IBootstrapDialogContext;
     show(options: IBootstrapDialogOptions): IBootstrapDialogInstance;
+    newGuid(): string;
 }
 
 

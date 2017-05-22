@@ -1,5 +1,6 @@
-define(["require", "exports", "./log"], function (require, exports, log_1) {
-    "use strict";
-    log_1.message("hello");
-});
+"use strict";
+function yznTestFn() {
+    return "Hello world";
+}
+exports.yznTestFn = yznTestFn;
 //# sourceMappingURL=1.js.map

@@ -1,18 +1,4 @@
-﻿$(document).ready(function () {
+﻿export function yznTestFn() {
+    return "Hello world";
 
-    yznInitUploadImgs('virtualproduct', ['Logo']);
-
-
-    $('#btn-ok').click(function () {
-        var $frm = $(this).closest("form");
-
-        if ($.html5Validate.isAllpass($frm)) {
-            $frm.submit();
-        }
-
-
-    });
-
-
-
-});
+} 

@@ -1,30 +1,30 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-    <title></title>
+    <title>TypeScript HTML App</title>
+    <style>
+        div.fixed-table-scroll-outer {
+            top: 0;
+            left: 0;
+            visibility: hidden;
+            width: 200px;
+            height: 150px;
+            overflow: hidden;
+            background-color: red;
+        }
+
+        p.fixed-table-scroll-inner {
+            width: 100%;
+            height: 200px;
+            background-color: green;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <p>Hello World 1</p>
-    <p>Hello World 2</p>
-
-    <script src="Scripts/jquery-1.8.2.js"></script>
-    <script src="Scripts/layer.js"></script>
-    
-    <div id="div">
-
+    <div class="fixed-table-scroll-outer" id="out">
+        <p class="fixed-table-scroll-inner" id="in"/>
     </div>
-    <button id="btn-test">test</button>
-    <script src="1.js"></script>
 
-
-    <!--<script>
-        $('#btn-test').click(function () {
-           
-
-
-        });
-    </script>-->
 </body>
-
-
 </html>

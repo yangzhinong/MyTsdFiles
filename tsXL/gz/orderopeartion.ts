@@ -1,5 +1,6 @@
-$(document).ready(function () {
+﻿$(document).ready(function () {
     ///验证码
+        
     function initStatus() {
         var statuArray = "0:预订等待|1:接受预定|2:订单确认|3:预订取消|4:预订拒绝|5:超时作废|6:交易完成|7:申请退单|17:确认退单|27:拒绝退单|37:退单完成|8:申请变更|18:确认变更".split('|');
         var str = "";
@@ -7,7 +8,7 @@ $(document).ready(function () {
             var array = statuArray[i].split(':');
             if (parseInt(array[0]) == parseInt($("#os").html())) {
                 str = array[1];
-                break;
+                break
             }
         }
         return str;
@@ -17,14 +18,14 @@ $(document).ready(function () {
         $('#buttons-area').empty().load("/SysOrders/_OrderOperationButtons/" + fOrderId(), function () {
             fBindButtonsClick();
         });
-    };
+    }
     var fOrderId = function () {
         var id = $('#buttons-area').attr("data-order-id");
         return parseInt(id, 10);
-    };
+    }
     var fAlert = function (data) {
         layer.alert(data.msg, ((data.code == 0) ? 8 : 9));
-    };
+    }
     var fBindButtonsClick = function () {
         $('#order-op button:contains("拒绝预订")').click(function () {
             BootstrapDialog.confirm({
@@ -36,7 +37,7 @@ $(document).ready(function () {
                 },
                 callback: function (bConfirm) {
                     if (bConfirm) {
-                        var $btn = this;
+                       var $btn = this;
                         $btn.disable();
                         $btn.spin();
                         var val = $btn.dialog.$modalContent.find("textarea").val();
@@ -62,6 +63,8 @@ $(document).ready(function () {
             }, "预订确认");
         });
         $('#order-op button:contains("费用变更申请")').click(function () {
+
+
             var dlg = BootstrapDialog.confirm({
                 title: '请填写费用变更单',
                 message: function (dlg) {
@@ -89,39 +92,47 @@ $(document).ready(function () {
                                 $btn.enable();
                                 $btn.stopSpin();
                             });
-                        }
-                        else {
+                        } else {
                             $btn.enable();
                             $btn.stopSpin();
                         }
                         return false;
-                    }
-                    ;
+                    };
+
                 }
             });
+
+
+
+
         });
         $('#order-op button:contains("费用变更审核")').click(function () {
+
             var fCheck = function () {
                 var frm = dlg.$modalBody.find("form");
+
                 var id = frm.attr("data-id");
                 var check = $('input[name=Status]:checked', frm).val();
-                $.post('/SysOrders/OrderChangeAmountApplyCheckSubmit', { Id: id, check: check }, function (data) {
-                    layer.closeAll();
-                    if (data.code) {
-                        layer.alert(data.msg, 9);
-                        //fRefreshButtons();
-                        dlg.close();
-                        window.location.reload();
-                    }
-                    else {
-                        layer.alert(data.msg, 8);
-                    }
-                });
+                $.post('/SysOrders/OrderChangeAmountApplyCheckSubmit',
+                    { Id: id, check: check },
+                    function (data) {
+                        layer.closeAll();
+                        if (data.code) {
+                            layer.alert(data.msg, 9);
+                            //fRefreshButtons();
+                            dlg.close();
+                            window.location.reload();
+
+                        }
+                        else {
+                            layer.alert(data.msg, 8);
+                        }
+                    });
                 return false;
             };
             var $btn = $(this);
             $btn.disabled = true;
-            var dlg = new BootstrapDialog({
+            var dlg = new  BootstrapDialog({
                 title: '费用变更单审核',
                 message: function (dlg) {
                     var $msg = $('<div></div>');
@@ -134,6 +145,7 @@ $(document).ready(function () {
                     {
                         label: '确定',
                         action: function () {
+
                             layer.load("正在处理...");
                             fCheck(); //状态2为同意
                         }
@@ -146,13 +158,17 @@ $(document).ready(function () {
                     }
                 ]
             });
+
             dlg.realize();
             setTimeout(function () {
                 dlg.open();
                 $btn.enabled = true;
             }, 300);
+
+
         });
         $('#order-op button:contains("退款申请")').click(function () {
+
             var dlg = BootstrapDialog.confirm({
                 title: '请填写退款申请',
                 message: function (dlg) {
@@ -162,7 +178,7 @@ $(document).ready(function () {
                 },
                 callback: function (bConfirm) {
                     if (bConfirm) {
-                        var $btn = this;
+                        var $btn =<IBootstrapDialogButtonEx> this;
                         $btn.disable();
                         $btn.spin();
                         var $frm = dlg.$modalContent.find("form");
@@ -179,38 +195,42 @@ $(document).ready(function () {
                                 $btn.enable();
                                 $btn.stopSpin();
                             });
-                        }
-                        else {
+                        } else {
                             $btn.enable();
                             $btn.stopSpin();
                         }
                         return false;
-                    }
-                    ;
+                    };
+
                 }
             });
+
         });
         $('#order-op button:contains("退款审核")').click(function () {
             var fCheck = function () {
                 var frm = dlg.$modalBody.find("form");
+
                 var id = frm.attr("data-id");
                 var check = $('input[name=Status]:checked', frm).val();
-                $.post('/SysOrders/OrderRefundMoneyApplyCheckSubmit', { Id: id, check: check }, function (data) {
-                    layer.closeAll();
-                    if (data.code) {
-                        layer.alert(data.msg, 9);
-                        fRefreshButtons();
-                        dlg.close();
-                    }
-                    else {
-                        layer.alert(data.msg, 8);
-                    }
-                });
+                $.post('/SysOrders/OrderRefundMoneyApplyCheckSubmit',
+                    { Id: id, check: check },
+                    function (data) {
+                        layer.closeAll();
+                        if (data.code) {
+                            layer.alert(data.msg, 9);
+                            fRefreshButtons();
+                            dlg.close();
+
+                        }
+                        else {
+                            layer.alert(data.msg, 8);
+                        }
+                    });
                 return false;
             };
             var $btn = $(this);
             $btn.disabled = true;
-            var dlg = new BootstrapDialog({
+            var dlg = new  BootstrapDialog({
                 title: '退款审核',
                 message: function (dlg) {
                     var $msg = $('<div></div>');
@@ -235,13 +255,18 @@ $(document).ready(function () {
                     }
                 ]
             });
+
             dlg.realize();
             setTimeout(function () {
                 dlg.open();
                 $btn.enabled = true;
             }, 300);
+
+
+
         });
         $('#order-op button:contains("付款")').click(function () {
+
             var fPay = function () {
                 var $frm = dlg.$modalBody.find('form');
                 if ($.html5Validate.isAllpass($frm)) {
@@ -250,38 +275,46 @@ $(document).ready(function () {
                     var bUseCuMoney = 0;
                     var $bUseCuMoney = $("input[name='bUseCuMoney']:checked", $frm);
                     if ($bUseCuMoney.length > 0 && $bUseCuMoney.is(":visible"))
-                        bUseCuMoney = $bUseCuMoney.val();
-                    var OrderNo = $("input[name='OrderNo']", $frm).val(), Money = $("input[name='Money']", $frm).val(), GtzCardNumber = $("input[name='GtzCardNumber']", $frm).val(), MobileCode = $("input[name='MobileCode']", $frm).val();
+                        bUseCuMoney= $bUseCuMoney.val();
+
+                    var
+                        OrderNo = $("input[name='OrderNo']", $frm).val(),
+                        Money = $("input[name='Money']", $frm).val(),
+                        GtzCardNumber = $("input[name='GtzCardNumber']", $frm).val(),
+                        MobileCode = $("input[name='MobileCode']", $frm).val();
+                        
                     $.ajax({
                         type: "POST",
                         contentType: "application/json",
                         url: "/sysorders/submitorderpay/",
                         data: "{'OrderNo':'" + OrderNo + "','Money':" + Money + ",'GtzCardNumber':'" +
-                            GtzCardNumber + "','MobileCode':'" + MobileCode +
-                            "','bUseCuMoney':" + bUseCuMoney + "}",
+                                            GtzCardNumber + "','MobileCode':'" + MobileCode +
+                                            "','bUseCuMoney':" + bUseCuMoney + "}",
                         dataType: 'json',
                         success: function (json) {
                             layer.closeAll();
                             if (json.state == 1) {
-                                layer.msg(json.msg, 3, 9 /* SmillingFace */);
+                                layer.msg(json.msg, 3, LayerIcon.SmillingFace);
                                 dlg.close();
                                 fRefreshButtons();
                             }
                             else if (json.state == 2) {
                                 //重复支付
-                                layer.alert(json.msg, 8 /* CryingFace */);
+                                layer.alert(json.msg, LayerIcon.CryingFace);
                                 dlg.close();
+                                //alert(JSON.stringify(json));
                             }
                             else {
-                                layer.msg(json.msg, 5, 8 /* CryingFace */);
+                                layer.msg(json.msg, 5, LayerIcon.CryingFace);
                             }
                         }
                     });
                 }
             };
+
             var $btn = $(this);
             $btn.disabled = true;
-            var dlg = new BootstrapDialog({
+            var dlg = new  BootstrapDialog({
                 title: '付款',
                 message: function (dlg) {
                     var $msg = $('<div></div>');
@@ -293,10 +326,11 @@ $(document).ready(function () {
                 buttons: [
                     {
                         label: '支付',
-                        cssClass: 'btn btn-primary',
+                        cssClass:'btn btn-primary',
                         action: function () {
                             layer.load("正在处理...", 3);
                             fPay(); //状态2为同意
+
                         }
                     },
                     {
@@ -307,32 +341,36 @@ $(document).ready(function () {
                     }
                 ]
             });
+
             dlg.realize();
             setTimeout(function () {
                 dlg.open();
                 $btn.enabled = true;
             }, 300);
+
         });
         $('#order-op button:contains("验票")').click(function () {
             var fValidTicket = function ($def) {
                 var $frm = dlg.$modalBody.find('form');
                 var TicketCode = $('#TicketCode', $frm).val();
                 var OrderNo = $frm.attr('data-order-no');
-                $.post('/SysOrders/SubmitVaildOrder', { OrderNo: OrderNo, TicketCode: TicketCode }, function (data) {
-                    $def.resolve();
-                    layer.closeAll();
-                    if (data.code) {
-                        layer.msg(data.msg, 3, 9 /* SmillingFace */);
-                        dlg.close();
-                        window.location.reload();
-                    }
-                    else {
-                        layer.alert(data.msg, 8 /* CryingFace */);
-                    }
-                });
+                $.post('/SysOrders/SubmitVaildOrder',
+                    { OrderNo: OrderNo, TicketCode: TicketCode },
+                    function (data) {
+                        $def.resolve();
+                        layer.closeAll();
+                        if (data.code) {
+                            layer.msg(data.msg,3,LayerIcon.SmillingFace);
+                            dlg.close();
+                            window.location.reload();
+                        } else {
+                            layer.alert(data.msg,LayerIcon.CryingFace);
+                        }
+                    });
             };
+
             var $btn = $(this);
-            var dlg = new BootstrapDialog({
+            var dlg = new  BootstrapDialog({
                 title: '验票',
                 message: function (dlg) {
                     var $msg = $('<div></div>');
@@ -355,6 +393,7 @@ $(document).ready(function () {
                             });
                             layer.load("正在处理...", 3);
                             fValidTicket($def); //状态2为同意
+
                         }
                     },
                     {
@@ -365,23 +404,51 @@ $(document).ready(function () {
                     }
                 ]
             });
+
             dlg.realize();
             setTimeout(function () {
                 dlg.open();
                 $btn.enabled = true;
             }, 300);
         });
+        $('#order-op button:contains("手动结算")').click(function () {
+
+          var dlg=  BootstrapDialog.confirm({
+                message: '你要手动结算此订单?',
+                title: '请确认',
+                callback: function (ret) {
+                    if (ret) {
+                        $.post("/SysOrders/ManualSettle",
+                            { id: fOrderId() },
+                            function (data: IJsonMsg) {
+                                if (data.code) {
+                                    layer.msg(data.msg, 3, LayerIcon.SmillingFace);
+                                    location.reload();
+                                }
+                                else {
+                                    dlg.close();
+                                    layer.alert(data.msg);
+                                }
+                            });
+                    } 
+                }
+
+            });
+        });
     };
+
     fBindButtonsClick();
+
+
+
     (function () {
-        function forgetTime(down) {
+        function forgetTime(down?:number) {
             var _this = $("#getpaycode");
             if (down == 0) {
                 $(_this).attr("disabled", false);
                 $(_this).text("发送验证码");
                 down = 60;
-            }
-            else {
+            } else {
                 $(_this).attr("disabled", true);
                 $(_this).text("重新发送(" + down + ")");
                 //down = down - 1;
@@ -392,8 +459,11 @@ $(document).ready(function () {
                 }
             }
         }
+
         $("#getpaycode").live('click', function () {
-            var orderId = fOrderId(), GtzCardNumber = $("input[name='GtzCardNumber']").val();
+            var
+                orderId = fOrderId(),
+                GtzCardNumber = $("input[name='GtzCardNumber']").val();
             if ($.html5Validate.isAllpass($("input[name='GtzCardNumber']"))) {
                 var load = layer.load("提交中...", 10);
                 forgetTime();
@@ -409,29 +479,32 @@ $(document).ready(function () {
                             json.msg = $.parseJSON(json.msg);
                             layer.msg(json.msg[0], 1, 9);
                             var cuMoney = json.msg[1];
+                            
                             $('#cuMoney').text(cuMoney);
                             if (cuMoney > 0) {
                                 var $chk = $("input[name='bUseCuMoney']", $('#cuMoney').closest('form'));
                                 $chk.val(cuMoney).off('click');
                                 $chk.on('click', function () {
                                     var $ordermoney = $('#order-money', $(this).closest('form'));
-                                    if ($(this).prop("checked"))
+                                    if ($(this).prop("checked")) 
                                         $ordermoney.text((Number($ordermoney.attr('data-value')) - Number($(this).val())).toFixed(2) + ' 元');
-                                    else
+                                    else 
                                         $ordermoney.text(Number($ordermoney.attr('data-value')).toFixed(2) + ' 元');
                                 });
                                 $('#cuMoney').closest('.form-group').show();
                             }
-                            else
+                            else 
                                 $('#cuMoney').closest('.form-group').hide();
                             forgetTime(60);
-                        }
-                        else {
+                        } else {
                             layer.msg(json.msg, 1, 8);
                         }
                     }
                 });
             }
         });
+
+
     })();
+
 });

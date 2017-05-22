@@ -1,0 +1,21 @@
+﻿{
+   "Framework": "jasmine",
+   "TestHarnessReferenceMode": "AMD",
+   "TestHarnessLocationMode": "SettingsFileAdjacent",
+   "TypeScriptModuleKind": "AMD",
+    "References" : [
+        { "Path": "require-2.1.8.js" },
+        { "Path": "Scripts/lodash/lodash.js" },
+	    { "Path": "typings/requirejs/require.d.ts", "IncludeInTestHarness": "false" },
+        { "Path": "typings/jasmine/jasmine.d.ts","IncludeInTestHarness": "false"  }
+    ],
+    "Tests" : [
+        { "Path": "tests" },
+        { "Path": "test/spc"}
+    ],  
+   "Compile": {
+    "Extensions": [".ts"],
+    "ExtensionsWithNoOutput": [".d.ts"]
+
+   }
+}

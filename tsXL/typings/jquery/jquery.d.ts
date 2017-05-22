@@ -16,8 +16,12 @@ MERCHANTABLITY OR NON-INFRINGEMENT.
 
 See the Apache Version 2.0 License for specific language governing permissions
 and limitations under the License.
-***************************************************************************** */
+* ***************************************************************************** */
 
+
+interface JQueryFn {
+    extend: (o: Object) => void;
+}
 
 /**
  * Interface for the AJAX setting that will configure the AJAX request
@@ -493,7 +497,8 @@ interface JQueryEventObject extends BaseJQueryEventObject, JQueryInputEventObjec
 }
 
 /*
-    Collection of properties of the current browser
+    Collection of properties of the current brows
+* 
 */
 
 interface JQuerySupport {
@@ -960,7 +965,7 @@ interface JQueryStatic {
     error(message: any): JQuery;
 
     expr: any;
-    fn: any;  //TODO: Decide how we want to type this
+    fn: JQueryFn;  //TODO: Decide how we want to type this
 
     isReady: boolean;
 

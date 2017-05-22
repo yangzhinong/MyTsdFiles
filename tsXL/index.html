@@ -5,13 +5,40 @@
     <meta charset="utf-8" />
     <title>TypeScript HTML App</title>
     <link rel="stylesheet" href="app.css" type="text/css" />
+<<<<<<< .mine
     <script data-main="app/AppConfig" type="text/javascript" src="lib/require.js"></script>
     <script type="text/javascript" src="app/classes/Greeter.js"></script>
     
+=======
+    <script src="app.js"></script>
+
+
+>>>>>>> .theirs
+
 </head>
 <body>
     <h1>TypeScript HTML App</h1>
 
-    <div id="content"></div>
+    <div id="content">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">
+                <a href='javascript:void(0)' onclick='removeItem(this)'><i class="glyphicon glyphicon-minus-sign"></i> 删除</a>
+            </label>
+            <label class="col-sm-1 control-label">价格名称</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="NameArray" placeholder="价格名称">
+            </div>
+            <label class="col-sm-1 control-label">价格</label>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" tag='0' name="PriceArray" placeholder="价格">
+            </div>
+            <div class="col-sm-1 control-label">可用铜币</div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" tag='0' name="TourCuPriceArray" placeholder="">
+            </div>
+            <label class="col-sm-1 control-label">数量</label>
+            <div class="col-sm-1"><input type="text" class="form-control" value='1' name="AmountArray" placeholder="填写数字"></div>
+        </div>
+    </div>
 </body>
 </html>

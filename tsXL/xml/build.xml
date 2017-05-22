@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<project name="NAnt Examples" default="build"
+         xmlns="http://nant.sf.net/release/0.92/nant.xsd">
+  <property name="gz" value="F:/MyTsdFiles/tsXL/gz"/>
+  <target name="build">
+    <echo message="hello world ${gz}" />
+    
+    <copy flatten="false" todir="D:/work/公众国际业务操作系统/GongZhong/js/gz">
+      <fileset basedir="e:/gz">
+        <include name="**/*.js"/>
+      </fileset>
+    </copy>
+
+
+
+  </target>
+</project>
+
